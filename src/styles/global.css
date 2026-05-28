@@ -5,8 +5,8 @@
   All other variables are derived automatically via color-mix() so any combo looks good.
 */
 :root {
-  --primary: #8b3a1e;
-  --accent:  #7a9a6a;
+  --primary: #334155;
+  --accent:  #f97316;
 
   --primary-hover:  color-mix(in srgb, var(--primary) 78%, black);
   --primary-muted:  color-mix(in srgb, var(--primary) 55%, white);
@@ -14,7 +14,7 @@
   --accent-hover:   color-mix(in srgb, var(--accent)  80%, black);
   --accent-tint:    color-mix(in srgb, var(--accent)  12%, white);
   --accent-border:  color-mix(in srgb, var(--accent)  35%, white);
-  --accent-text:    #1a1a1a; /* overridden by JS based on accent luminance */
+  --accent-text:    #ffffff;
   --page-bg:        color-mix(in srgb, var(--primary)  4%, white);
   --muted-bg:       color-mix(in srgb, var(--primary)  9%, white);
   --border-c:       color-mix(in srgb, var(--primary) 16%, white);
