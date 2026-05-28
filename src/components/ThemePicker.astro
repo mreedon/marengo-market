@@ -29,7 +29,7 @@ const presets = [
       <label class="text-xs text-gray-500 w-12 shrink-0">Primary</label>
       <div class="relative w-8 h-8 shrink-0">
         <div id="primary-swatch" class="absolute inset-0 rounded-full shadow border-2 border-white pointer-events-none"></div>
-        <input type="color" id="primary-input"
+        <input type="color" id="primary-input" value="#8b3a1e"
           class="absolute inset-0 opacity-0 cursor-pointer w-full h-full rounded-full" />
       </div>
       <span id="primary-hex" class="text-xs text-gray-400 font-mono"></span>
@@ -40,7 +40,7 @@ const presets = [
       <label class="text-xs text-gray-500 w-12 shrink-0">Accent</label>
       <div class="relative w-8 h-8 shrink-0">
         <div id="accent-swatch" class="absolute inset-0 rounded-full shadow border-2 border-white pointer-events-none"></div>
-        <input type="color" id="accent-input"
+        <input type="color" id="accent-input" value="#7a9a6a"
           class="absolute inset-0 opacity-0 cursor-pointer w-full h-full rounded-full" />
       </div>
       <span id="accent-hex" class="text-xs text-gray-400 font-mono"></span>
@@ -98,8 +98,8 @@ const presets = [
     const ah = document.getElementById('accent-hex')     as HTMLElement;
     if (ps) ps.style.background = primary;
     if (as) as.style.background = accent;
-    if (pi) pi.value = primary;
-    if (ai) ai.value = accent;
+    if (pi) { pi.value = primary; pi.setAttribute('value', primary); }
+    if (ai) { ai.value = accent;  ai.setAttribute('value', accent); }
     if (ph) ph.textContent = primary;
     if (ah) ah.textContent = accent;
   }
