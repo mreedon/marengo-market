@@ -5,8 +5,8 @@
   All other variables are derived automatically via color-mix() so any combo looks good.
 */
 :root {
-  --primary: #334155;
-  --accent:  #f97316;
+  --primary: #640f14;
+  --accent:  #cf8b38;
 
   --primary-hover:  color-mix(in srgb, var(--primary) 78%, black);
   --primary-muted:  color-mix(in srgb, var(--primary) 55%, white);
