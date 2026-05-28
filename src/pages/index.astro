@@ -1,17 +1,137 @@
 ---
+import Layout from '../layouts/Layout.astro';
 
+const markets = [
+  { date: 'Friday, May 29', rainDate: 'June 6' },
+  { date: 'Friday, June 26', rainDate: null },
+  { date: 'Friday, July 31', rainDate: 'August 7' },
+  { date: 'Friday, August 28', rainDate: 'September 4' },
+  { date: 'Friday, September 25', rainDate: 'October 2' },
+];
+
+const today = new Date();
+const nextMarket = markets.find(m => {
+  const d = new Date(m.date.replace('Friday, ', '') + ', 2026');
+  return d >= today;
+});
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Home">
+  <!-- Hero -->
+  <section class="bg-gradient-to-br from-[#1e5631] to-[#2d6a4f] text-white py-20 px-4">
+    <div class="max-w-3xl mx-auto text-center">
+      <p class="text-[#a8d5b5] text-sm font-semibold uppercase tracking-widest mb-3">Marengo, Illinois</p>
+      <h1 class="text-4xl md:text-6xl font-bold mb-4 leading-tight">Marengo Makers Market</h1>
+      <p class="text-[#d4edda] text-lg md:text-xl mb-8 max-w-xl mx-auto">
+        Crafters, farmers, and local vendors — monthly Friday evenings at Calvin Spencer Park.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="/schedule" class="bg-[#e9c46a] text-[#1a1a1a] font-semibold px-6 py-3 rounded-lg hover:bg-[#f4d07a] transition-colors">
+          View Full Schedule
+        </a>
+        <a href="/vendors" class="border border-white text-white font-semibold px-6 py-3 rounded-lg hover:bg-white hover:text-[#1e5631] transition-colors">
+          See Vendors
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Next Market Banner -->
+  {nextMarket && (
+    <section class="bg-[#e9c46a] py-5 px-4">
+      <div class="max-w-3xl mx-auto text-center">
+        <p class="text-[#1a1a1a] font-semibold text-lg">
+          🗓 Next market: <strong>{nextMarket.date}</strong> &nbsp;·&nbsp; 5:00–8:00 PM
+          {nextMarket.rainDate && (
+            <span class="text-sm font-normal ml-2">(Rain date: {nextMarket.rainDate})</span>
+          )}
+        </p>
+      </div>
+    </section>
+  )}
+
+  <!-- Details Cards -->
+  <section class="max-w-5xl mx-auto px-4 py-16 grid md:grid-cols-3 gap-8">
+    <div class="bg-white rounded-2xl p-6 shadow-sm border border-[#e0ead8]">
+      <div class="text-3xl mb-3">📍</div>
+      <h2 class="font-bold text-lg mb-2 text-[#1e5631]">Location</h2>
+      <p class="text-gray-700 text-sm leading-relaxed">
+        <strong>Calvin Spencer Park</strong><br />
+        351 Hale St., Marengo, IL<br />
+        <span class="text-gray-500">Across from the Catholic Church</span>
+      </p>
+      <a
+        href="https://maps.google.com/?q=351+Hale+St+Marengo+IL"
+        target="_blank"
+        rel="noopener"
+        class="inline-block mt-3 text-sm text-[#2d6a4f] font-medium hover:underline"
+      >
+        Get directions →
+      </a>
+    </div>
+
+    <div class="bg-white rounded-2xl p-6 shadow-sm border border-[#e0ead8]">
+      <div class="text-3xl mb-3">🕔</div>
+      <h2 class="font-bold text-lg mb-2 text-[#1e5631]">Hours</h2>
+      <p class="text-gray-700 text-sm leading-relaxed">
+        <strong>5:00 PM – 8:00 PM</strong><br />
+        Monthly on Fridays<br />
+        <span class="text-gray-500">May through September 2026</span>
+      </p>
+    </div>
+
+    <div class="bg-white rounded-2xl p-6 shadow-sm border border-[#e0ead8]">
+      <div class="text-3xl mb-3">🛖</div>
+      <h2 class="font-bold text-lg mb-2 text-[#1e5631]">Vendors</h2>
+      <p class="text-gray-700 text-sm leading-relaxed">
+        Wide variety of crafters, local vendors, and farmers. Interested in a booth?
+      </p>
+      <a href="/contact" class="inline-block mt-3 text-sm text-[#2d6a4f] font-medium hover:underline">
+        Request a booth →
+      </a>
+    </div>
+  </section>
+
+  <!-- 2026 Schedule Preview -->
+  <section class="bg-[#f0f7f2] py-14 px-4">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-2xl font-bold text-center text-[#1e5631] mb-8">2026 Market Dates</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm bg-white rounded-xl shadow-sm border border-[#e0ead8]">
+          <thead>
+            <tr class="bg-[#1e5631] text-white">
+              <th class="px-5 py-3 text-left font-semibold rounded-tl-xl">Market Date</th>
+              <th class="px-5 py-3 text-left font-semibold rounded-tr-xl">Rain Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {markets.map((m, i) => (
+              <tr class={i % 2 === 0 ? 'bg-white' : 'bg-[#f7fbf8]'}>
+                <td class="px-5 py-3 font-medium">{m.date}</td>
+                <td class="px-5 py-3 text-gray-500">{m.rainDate ?? '—'}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-center mt-4 text-sm text-gray-500">All markets run 5:00–8:00 PM at Calvin Spencer Park</p>
+    </div>
+  </section>
+
+  <!-- Facebook CTA -->
+  <section class="max-w-3xl mx-auto px-4 py-14 text-center">
+    <h2 class="text-2xl font-bold text-[#1e5631] mb-3">Stay Connected</h2>
+    <p class="text-gray-600 mb-6">Follow us on Facebook for updates, vendor spotlights, and rain-day announcements.</p>
+    <a
+      href="https://www.facebook.com/groups/marengoilmarket"
+      target="_blank"
+      rel="noopener"
+      class="inline-flex items-center gap-2 bg-[#1877f2] text-white font-semibold px-6 py-3 rounded-lg hover:bg-[#1465d8] transition-colors"
+    >
+      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.884v2.25h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/>
+      </svg>
+      Join us on Facebook
+    </a>
+  </section>
+</Layout>

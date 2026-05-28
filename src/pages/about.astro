@@ -1,0 +1,50 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="About" description="Learn about the Marengo Makers Market — a monthly gathering of local crafters, vendors, and farmers in Marengo, IL.">
+  <section class="max-w-3xl mx-auto px-4 py-14">
+    <h1 class="text-3xl font-bold text-[#1e5631] mb-6">About the Marengo Makers Market</h1>
+
+    <div class="prose prose-sm max-w-none text-gray-700 space-y-4 leading-relaxed">
+      <p class="text-lg text-gray-800">
+        The Marengo Makers Market is a monthly outdoor market bringing together a wide variety of crafters, local vendors, and farmers in the heart of Marengo, Illinois.
+      </p>
+      <p>
+        We gather on Friday evenings from 5:00 to 8:00 PM at Calvin Spencer Park — a welcoming green space at 351 Hale St., just across from the Catholic Church. Each market runs once a month, May through September.
+      </p>
+      <p>
+        Whether you're picking up fresh produce, discovering handmade goods, or just enjoying an evening out with neighbors, the Makers Market is a place to connect with the community and the people who make things here.
+      </p>
+    </div>
+
+    <div class="mt-10 grid sm:grid-cols-2 gap-6">
+      <div class="bg-white rounded-xl border border-[#e0ead8] p-5 shadow-sm">
+        <div class="text-2xl mb-2">📍</div>
+        <h2 class="font-bold text-[#1e5631] mb-1">Where</h2>
+        <p class="text-sm text-gray-700">Calvin Spencer Park<br />351 Hale St., Marengo, IL<br /><span class="text-gray-500">Across from the Catholic Church</span></p>
+      </div>
+      <div class="bg-white rounded-xl border border-[#e0ead8] p-5 shadow-sm">
+        <div class="text-2xl mb-2">🕔</div>
+        <h2 class="font-bold text-[#1e5631] mb-1">When</h2>
+        <p class="text-sm text-gray-700">Monthly Fridays, May–September<br />5:00 PM – 8:00 PM</p>
+      </div>
+    </div>
+
+    <div class="mt-10 bg-[#f0f7f2] rounded-xl p-6">
+      <h2 class="font-bold text-[#1e5631] text-lg mb-3">Follow Along</h2>
+      <p class="text-sm text-gray-700 mb-4">Stay up to date on vendor announcements, rain-day calls, and market news.</p>
+      <a
+        href="https://www.facebook.com/groups/marengoilmarket"
+        target="_blank"
+        rel="noopener"
+        class="inline-flex items-center gap-2 bg-[#1877f2] text-white text-sm font-semibold px-5 py-2.5 rounded-lg hover:bg-[#1465d8] transition-colors"
+      >
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.884v2.25h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/>
+        </svg>
+        facebook.com/groups/marengoilmarket
+      </a>
+    </div>
+  </section>
+</Layout>

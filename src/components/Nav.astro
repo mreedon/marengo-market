@@ -1,0 +1,60 @@
+---
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/schedule', label: 'Schedule' },
+  { href: '/vendors', label: 'Vendors' },
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="bg-[#1e5631] text-white shadow-md">
+  <nav class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-2 group">
+      <span class="text-2xl">🌿</span>
+      <div class="leading-tight">
+        <div class="font-bold text-lg tracking-tight text-white group-hover:text-[#a8d5b5] transition-colors">Marengo Makers Market</div>
+        <div class="text-xs text-[#a8d5b5]">Marengo, IL</div>
+      </div>
+    </a>
+
+    <ul class="hidden md:flex items-center gap-6">
+      {navLinks.map(({ href, label }) => (
+        <li>
+          <a
+            href={href}
+            class={`text-sm font-medium transition-colors hover:text-[#e9c46a] ${
+              currentPath === href ? 'text-[#e9c46a] underline underline-offset-4' : 'text-white'
+            }`}
+          >
+            {label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <button id="mobile-menu-btn" class="md:hidden p-2 rounded hover:bg-[#2d6a4f] transition-colors" aria-label="Toggle menu">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </nav>
+
+  <div id="mobile-menu" class="hidden md:hidden border-t border-[#2d6a4f]">
+    <ul class="max-w-5xl mx-auto px-4 py-3 flex flex-col gap-3">
+      {navLinks.map(({ href, label }) => (
+        <li>
+          <a href={href} class="block text-sm font-medium hover:text-[#e9c46a] transition-colors py-1">{label}</a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  btn?.addEventListener('click', () => menu?.classList.toggle('hidden'));
+</script>
