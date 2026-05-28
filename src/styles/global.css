@@ -1,1 +1,74 @@
 @import "tailwindcss";
+
+/* ── Default theme: Forest (current green) ── */
+:root {
+  --primary:        #1e5631;
+  --primary-hover:  #2d6a4f;
+  --primary-muted:  #a8d5b5;
+  --primary-light:  #d4edda;
+  --accent:         #e9c46a;
+  --accent-hover:   #f4d07a;
+  --accent-text:    #1a1a1a;
+  --accent-tint:    #fff8e7;
+  --accent-border:  #f0d78a;
+  --page-bg:        #faf7f0;
+  --muted-bg:       #f0f7f2;
+  --border-c:       #e0ead8;
+  --link:           #2d6a4f;
+  --row-alt:        #f7fbf8;
+  --footer-muted:   #7ab99a;
+}
+
+[data-theme="rustic"] {
+  --primary:        #8b3a1e;
+  --primary-hover:  #a0461f;
+  --primary-muted:  #e8b89a;
+  --primary-light:  #f5dece;
+  --accent:         #e8a045;
+  --accent-hover:   #f0b055;
+  --accent-text:    #1a1a1a;
+  --accent-tint:    #fef3e2;
+  --accent-border:  #e8c98a;
+  --page-bg:        #fdf6ee;
+  --muted-bg:       #faebd7;
+  --border-c:       #e8d5c0;
+  --link:           #8b3a1e;
+  --row-alt:        #fdf0e4;
+  --footer-muted:   #c89070;
+}
+
+[data-theme="harvest"] {
+  --primary:        #4a1c5c;
+  --primary-hover:  #5c2472;
+  --primary-muted:  #c9a8d8;
+  --primary-light:  #e4d0ef;
+  --accent:         #e8604c;
+  --accent-hover:   #f07060;
+  --accent-text:    #ffffff;
+  --accent-tint:    #fef0ee;
+  --accent-border:  #f0a898;
+  --page-bg:        #faf7fc;
+  --muted-bg:       #f3ecf9;
+  --border-c:       #ddd0e8;
+  --link:           #6b2880;
+  --row-alt:        #f7f0fc;
+  --footer-muted:   #c9a8d8;
+}
+
+[data-theme="cobalt"] {
+  --primary:        #1a3a5c;
+  --primary-hover:  #1f4a75;
+  --primary-muted:  #8ab4d4;
+  --primary-light:  #c8dce8;
+  --accent:         #f0b429;
+  --accent-hover:   #f8c540;
+  --accent-text:    #1a1a1a;
+  --accent-tint:    #fef9e7;
+  --accent-border:  #f0d878;
+  --page-bg:        #f6f8fb;
+  --muted-bg:       #edf2f8;
+  --border-c:       #d0dce8;
+  --link:           #1a3a5c;
+  --row-alt:        #f0f5fa;
+  --footer-muted:   #7aacc8;
+}

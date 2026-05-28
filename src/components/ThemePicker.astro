@@ -1,0 +1,86 @@
+---
+const themes = [
+  { id: 'forest',  name: 'Forest',  primary: '#1e5631', accent: '#e9c46a' },
+  { id: 'rustic',  name: 'Rustic',  primary: '#8b3a1e', accent: '#e8a045' },
+  { id: 'harvest', name: 'Harvest', primary: '#4a1c5c', accent: '#e8604c' },
+  { id: 'cobalt',  name: 'Cobalt',  primary: '#1a3a5c', accent: '#f0b429' },
+];
+---
+
+<div id="theme-picker" class="fixed bottom-5 right-5 z-50 select-none">
+  <!-- Toggle button -->
+  <button
+    id="theme-toggle"
+    class="flex items-center gap-2 bg-white border border-gray-200 shadow-lg rounded-full px-4 py-2 text-sm font-medium text-gray-700 hover:shadow-xl transition-all"
+    aria-label="Choose site theme"
+  >
+    <span>🎨</span>
+    <span>Theme</span>
+  </button>
+
+  <!-- Panel -->
+  <div
+    id="theme-panel"
+    class="hidden absolute bottom-12 right-0 bg-white rounded-2xl shadow-2xl border border-gray-100 p-4 w-52"
+  >
+    <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Choose a theme</p>
+    <div class="space-y-1">
+      {themes.map(t => (
+        <button
+          class="theme-btn w-full flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-gray-50 transition-colors text-left"
+          data-theme={t.id}
+        >
+          <!-- Swatch: outer = primary, inner dot = accent -->
+          <span
+            class="flex-shrink-0 w-8 h-8 rounded-full shadow-sm flex items-center justify-center"
+            style={`background: ${t.primary}`}
+          >
+            <span class="w-3 h-3 rounded-full" style={`background: ${t.accent}`}></span>
+          </span>
+          <span class="text-sm font-medium text-gray-700 flex-1">{t.name}</span>
+          <span class="check-mark text-xs font-bold hidden" style={`color: ${t.primary}`}>✓</span>
+        </button>
+      ))}
+    </div>
+    <p class="text-[10px] text-gray-400 text-center mt-3 leading-tight">Selection saves automatically</p>
+  </div>
+</div>
+
+<script>
+  const THEME_KEY = 'mmm-theme';
+
+  function applyTheme(id: string) {
+    document.documentElement.dataset.theme = id;
+    try { localStorage.setItem(THEME_KEY, id); } catch(e) {}
+    document.querySelectorAll<HTMLElement>('.theme-btn').forEach(btn => {
+      const check = btn.querySelector<HTMLElement>('.check-mark');
+      if (check) check.classList.toggle('hidden', btn.dataset.theme !== id);
+    });
+  }
+
+  // Init with saved theme
+  const saved = (() => { try { return localStorage.getItem(THEME_KEY) || 'forest'; } catch(e) { return 'forest'; } })();
+  applyTheme(saved);
+
+  // Toggle panel open/close
+  document.getElementById('theme-toggle')?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    document.getElementById('theme-panel')?.classList.toggle('hidden');
+  });
+
+  // Close on outside click
+  document.addEventListener('click', (e) => {
+    const picker = document.getElementById('theme-picker');
+    if (!picker?.contains(e.target as Node)) {
+      document.getElementById('theme-panel')?.classList.add('hidden');
+    }
+  });
+
+  // Apply on selection
+  document.querySelectorAll<HTMLElement>('.theme-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      applyTheme(btn.dataset.theme!);
+      document.getElementById('theme-panel')?.classList.add('hidden');
+    });
+  });
+</script>

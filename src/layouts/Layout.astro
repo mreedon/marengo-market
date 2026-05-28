@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import ThemePicker from '../components/ThemePicker.astro';
 
 interface Props {
   title: string;
@@ -18,12 +19,22 @@ const { title, description = 'Crafters, vendors, and farmers — monthly Friday 
     <meta name="description" content={description} />
     <link rel="icon" href="/favicon.ico" />
     <title>{title} | Marengo Makers Market</title>
+    <!-- Apply saved theme before paint to avoid flash -->
+    <script is:inline>
+      (function() {
+        try {
+          const t = localStorage.getItem('mmm-theme') || 'forest';
+          document.documentElement.dataset.theme = t;
+        } catch(e) {}
+      })();
+    </script>
   </head>
-  <body class="bg-[#faf7f0] text-[#1a1a1a] font-sans min-h-screen flex flex-col">
+  <body class="bg-[var(--page-bg)] text-[#1a1a1a] font-sans min-h-screen flex flex-col">
     <Nav />
     <main class="flex-1">
       <slot />
     </main>
     <Footer />
+    <ThemePicker />
   </body>
 </html>

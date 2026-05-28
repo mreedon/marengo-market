@@ -2,18 +2,18 @@
 const year = new Date().getFullYear();
 ---
 
-<footer class="bg-[#1e5631] text-[#a8d5b5] mt-16">
+<footer class="mt-16 text-white" style="background: var(--primary)">
   <div class="max-w-5xl mx-auto px-4 py-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
-    <div>
+    <div style="color: var(--primary-muted)">
       <span class="font-semibold text-white">Marengo Makers Market</span> — Marengo, IL
     </div>
-    <div class="flex gap-6">
+    <div class="flex gap-6" style="color: var(--primary-muted)">
       <a href="/schedule" class="hover:text-white transition-colors">Schedule</a>
       <a href="/vendors" class="hover:text-white transition-colors">Vendors</a>
       <a href="/about" class="hover:text-white transition-colors">About</a>
       <a href="/contact" class="hover:text-white transition-colors">Contact</a>
       <a href="https://www.facebook.com/groups/marengoilmarket" target="_blank" rel="noopener" class="hover:text-white transition-colors">Facebook</a>
     </div>
-    <div class="text-xs text-[#7ab99a]">&copy; {year} Marengo Makers Market</div>
+    <div class="text-xs" style="color: var(--footer-muted)">&copy; {year} Marengo Makers Market</div>
   </div>
 </footer>
