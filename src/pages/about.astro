@@ -2,16 +2,17 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="About" description="Learn about the Marengo Makers Market — a monthly gathering of local crafters, vendors, and farmers in Marengo, IL.">
+<Layout title="About" description="Learn about the Marengo Makers Market, a monthly gathering of local crafters, vendors, and farmers in Marengo, IL.">
   <section class="max-w-3xl mx-auto px-4 py-14">
-    <h1 class="text-3xl font-bold mb-6" style="color: var(--primary)">About the Marengo Makers Market</h1>
+    <p class="eyebrow text-ink-soft text-sm">Since 2026 · Marengo, Illinois</p>
+    <h1 class="font-display text-4xl text-barn mt-1 mb-6">About the Market</h1>
 
-    <div class="text-gray-700 space-y-4 leading-relaxed">
-      <p class="text-lg text-gray-800">
+    <div class="text-ink space-y-4 leading-relaxed">
+      <p class="text-lg">
         The Marengo Makers Market is a monthly outdoor market bringing together a wide variety of crafters, local vendors, and farmers in the heart of Marengo, Illinois.
       </p>
       <p>
-        We gather on Friday evenings from 5:00 to 8:00 PM at Calvin Spencer Park — a welcoming green space at 351 Hale St., just across from the Catholic Church. Each market runs once a month, May through September.
+        We gather on Friday evenings from 5:00 to 8:00 PM at Calvin Spencer Park, a welcoming green space at 351 Hale St., just across from the Catholic Church. Each market runs once a month, May through September.
       </p>
       <p>
         Whether you're picking up fresh produce, discovering handmade goods, or just enjoying an evening out with neighbors, the Makers Market is a place to connect with the community and the people who make things here.
@@ -19,24 +20,30 @@ import Layout from '../layouts/Layout.astro';
     </div>
 
     <div class="mt-10 grid sm:grid-cols-2 gap-6">
-      <div class="bg-white rounded-xl p-5 shadow-sm" style="border: 1px solid var(--border-c)">
-        <div class="text-2xl mb-2">📍</div>
-        <h2 class="font-bold mb-1" style="color: var(--primary)">Where</h2>
-        <p class="text-sm text-gray-700">Calvin Spencer Park<br />351 Hale St., Marengo, IL<br /><span class="text-gray-500">Across from the Catholic Church</span></p>
+      <div class="bg-paper-bright rounded-lg p-5 border border-line">
+        <svg class="w-7 h-7 mb-3" viewBox="0 0 24 24" fill="none" stroke="#7c2214" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 21s-6-5.2-6-10a6 6 0 1 1 12 0c0 4.8-6 10-6 10z" />
+          <circle cx="12" cy="11" r="2.2" />
+        </svg>
+        <h2 class="eyebrow text-barn text-sm mb-2">Where</h2>
+        <p class="text-sm text-ink">Calvin Spencer Park<br />351 Hale St., Marengo, IL<br /><span class="text-ink-soft">Across from the Catholic Church</span></p>
       </div>
-      <div class="bg-white rounded-xl p-5 shadow-sm" style="border: 1px solid var(--border-c)">
-        <div class="text-2xl mb-2">🕔</div>
-        <h2 class="font-bold mb-1" style="color: var(--primary)">When</h2>
-        <p class="text-sm text-gray-700">Monthly Fridays, May–September<br />5:00 PM – 8:00 PM</p>
+      <div class="bg-paper-bright rounded-lg p-5 border border-line">
+        <svg class="w-7 h-7 mb-3" viewBox="0 0 24 24" fill="none" stroke="#7c2214" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="9" />
+          <path d="M12 7v5l3.2 2" />
+        </svg>
+        <h2 class="eyebrow text-barn text-sm mb-2">When</h2>
+        <p class="text-sm text-ink">Monthly Fridays, May–September<br />5:00 PM – 8:00 PM</p>
       </div>
     </div>
 
-    <div class="mt-10 rounded-xl p-6" style="background: var(--muted-bg)">
-      <h2 class="font-bold text-lg mb-3" style="color: var(--primary)">Follow Along</h2>
-      <p class="text-sm text-gray-700 mb-4">Stay up to date on vendor announcements, rain-day calls, and market news.</p>
+    <div class="mt-10 bg-kraft border border-line rounded-lg p-6">
+      <h2 class="eyebrow text-barn text-sm mb-2">Follow along</h2>
+      <p class="text-sm text-ink mb-4">Stay up to date on vendor announcements, rain-day calls, and market news.</p>
       <a href="https://www.facebook.com/groups/marengoilmarket" target="_blank" rel="noopener"
-        class="inline-flex items-center gap-2 bg-[#1877f2] text-white text-sm font-semibold px-5 py-2.5 rounded-lg hover:bg-[#1465d8] transition-colors">
-        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+        class="inline-flex items-center gap-2 bg-dusk text-paper text-sm font-bold px-5 py-2.5 rounded-lg hover:bg-dusk-deep transition-colors">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
           <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.884v2.25h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/>
         </svg>
         facebook.com/groups/marengoilmarket

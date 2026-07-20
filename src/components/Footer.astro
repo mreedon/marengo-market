@@ -2,18 +2,29 @@
 const year = new Date().getFullYear();
 ---
 
-<footer class="mt-16 text-white" style="background: var(--primary)">
-  <div class="max-w-5xl mx-auto px-4 py-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
-    <div style="color: var(--primary-muted)">
-      <span class="font-semibold text-white">Marengo Makers Market</span> — Marengo, IL
+<footer class="mt-16 bg-dusk text-paper border-t-4 border-gold">
+  <div class="max-w-5xl mx-auto px-4 py-10 flex flex-col md:flex-row items-center justify-between gap-6 text-sm">
+    <div class="text-center md:text-left">
+      <div class="font-display text-paper text-base leading-none">Marengo Makers Market</div>
+      <div class="eyebrow text-[0.7rem] mt-1.5 text-paper/60">Calvin Spencer Park · Marengo, Illinois</div>
     </div>
-    <div class="flex gap-6" style="color: var(--primary-muted)">
-      <a href="/schedule" class="hover:text-white transition-colors">Schedule</a>
-      <a href="/vendors" class="hover:text-white transition-colors">Vendors</a>
-      <a href="/about" class="hover:text-white transition-colors">About</a>
-      <a href="/contact" class="hover:text-white transition-colors">Contact</a>
-      <a href="https://www.facebook.com/groups/marengoilmarket" target="_blank" rel="noopener" class="hover:text-white transition-colors">Facebook</a>
+    <ul class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+      {[
+        { href: '/schedule', label: 'Schedule' },
+        { href: '/vendors', label: 'Vendors' },
+        { href: '/about', label: 'About' },
+        { href: '/contact', label: 'Contact' },
+      ].map(({ href, label }) => (
+        <li><a href={href} class="eyebrow text-[0.85rem] text-paper/80 hover:text-gold transition-colors">{label}</a></li>
+      ))}
+      <li>
+        <a href="https://www.facebook.com/groups/marengoilmarket" target="_blank" rel="noopener"
+          class="eyebrow text-[0.85rem] text-paper/80 hover:text-gold transition-colors">Facebook</a>
+      </li>
+    </ul>
+    <div class="text-xs text-paper/50 text-center md:text-right leading-relaxed">
+      &copy; {year} Marengo Makers Market<br />
+      Site by Travis Coudal · <a href="mailto:travis@tcoudal.com" class="hover:text-gold transition-colors">Report an issue</a>
     </div>
-    <div class="text-xs" style="color: var(--footer-muted)">&copy; {year} Marengo Makers Market &mdash; Website built and maintained by Travis Coudal &mdash; Report issues: <a href="mailto:travis@tcoudal.com" class="hover:text-white transition-colors">travis@tcoudal.com</a></div>
   </div>
 </footer>

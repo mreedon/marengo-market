@@ -1,24 +1,134 @@
 @import "tailwindcss";
 
 /*
-  Only --primary and --accent are set by the user (via ThemePicker / localStorage).
-  All other variables are derived automatically via color-mix() so any combo looks good.
+  Marengo Makers Market design tokens — "Friday evening county-fair poster".
+  Palette: warm paper + barn red + harvest gold + dusk navy.
+  Type: Alfa Slab One (display) / Barlow Condensed (labels) / Karla (body).
 */
-:root {
-  --primary: #640f14;
-  --accent:  #cf8b38;
+@theme {
+  --font-sans: "Karla Variable", "Karla", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Alfa Slab One", "Rockwell", "Georgia", serif;
+  --font-cond: "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;
 
-  --primary-hover:  color-mix(in srgb, var(--primary) 78%, black);
-  --primary-muted:  color-mix(in srgb, var(--primary) 55%, white);
-  --primary-light:  color-mix(in srgb, var(--primary) 25%, white);
-  --accent-hover:   color-mix(in srgb, var(--accent)  80%, black);
-  --accent-tint:    color-mix(in srgb, var(--accent)  12%, white);
-  --accent-border:  color-mix(in srgb, var(--accent)  35%, white);
-  --accent-text:    #ffffff;
-  --page-bg:        color-mix(in srgb, var(--primary)  4%, white);
-  --muted-bg:       color-mix(in srgb, var(--primary)  9%, white);
-  --border-c:       color-mix(in srgb, var(--primary) 16%, white);
-  --link:           var(--primary);
-  --row-alt:        color-mix(in srgb, var(--primary)  5%, white);
-  --footer-muted:   color-mix(in srgb, var(--primary) 55%, white);
+  --color-paper: #f6f0e2;
+  --color-paper-bright: #fdfaf0;
+  --color-paper-deep: #efe6d1;
+  --color-kraft: #eee3c8;
+  --color-ink: #2c241f;
+  --color-ink-soft: #6b5c50;
+  --color-barn: #7c2214;
+  --color-barn-deep: #5e1a10;
+  --color-gold: #e8ae35;
+  --color-gold-deep: #b97f14;
+  --color-dusk: #24374a;
+  --color-dusk-deep: #1a2938;
+  --color-line: #d9c9a8;
+}
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px dashed var(--color-barn);
+  outline-offset: 3px;
+}
+
+@layer components {
+  /* Condensed all-caps label — eyebrows, table headers, nav links, chips */
+  .eyebrow {
+    font-family: var(--font-cond);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+  }
+
+  /* Hand-printed primary button: hard offset shadow, pressed on hover */
+  .btn-punch {
+    display: inline-block;
+    font-weight: 700;
+    color: var(--color-ink);
+    background: var(--color-gold);
+    border: 2px solid var(--color-ink);
+    border-radius: 6px;
+    padding: 0.65rem 1.4rem;
+    box-shadow: 3px 3px 0 var(--color-ink);
+    transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease;
+  }
+  .btn-punch:hover {
+    background: color-mix(in srgb, var(--color-gold) 88%, white);
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 var(--color-ink);
+  }
+
+  .btn-quiet {
+    display: inline-block;
+    font-weight: 700;
+    color: var(--color-barn);
+    border: 2px solid var(--color-barn);
+    border-radius: 6px;
+    padding: 0.65rem 1.4rem;
+    transition: background 120ms ease, color 120ms ease;
+  }
+  .btn-quiet:hover {
+    background: var(--color-barn);
+    color: var(--color-paper);
+  }
+
+  /* Admit-one ticket strip: dashed edge + punched side holes */
+  .ticket {
+    position: relative;
+    background: var(--color-gold);
+    border: 2px dashed color-mix(in srgb, var(--color-ink) 60%, var(--color-gold));
+    border-radius: 10px;
+  }
+  .ticket::before,
+  .ticket::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 14px;
+    height: 14px;
+    border-radius: 9999px;
+    background: var(--color-paper);
+    border: 2px dashed color-mix(in srgb, var(--color-ink) 60%, var(--color-gold));
+    transform: translateY(-50%);
+  }
+  .ticket::before { left: -9px; }
+  .ticket::after { right: -9px; }
+
+  /* Kraft swing tag (vendor cards): punched hole, top left */
+  .tag {
+    position: relative;
+    background: var(--color-kraft);
+    border: 1px solid var(--color-line);
+    border-radius: 8px 14px 8px 8px;
+  }
+  .tag::before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 9px;
+    height: 9px;
+    border-radius: 9999px;
+    background: var(--color-paper);
+    box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--color-ink) 35%, var(--color-kraft));
+  }
+
+  /* Hero load-in */
+  .rise {
+    animation: rise 0.6s ease-out both;
+  }
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise { animation: none; }
+  .btn-punch, .btn-punch:hover { transform: none; }
 }

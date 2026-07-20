@@ -17,162 +17,170 @@ const nextMarket = markets.find(m => {
 ---
 
 <Layout title="Home">
-  <!-- Hero -->
-  <section class="text-white py-20 px-4" style="background: linear-gradient(135deg, var(--primary), var(--primary-hover))">
-    <div class="max-w-3xl mx-auto text-center">
-      <p class="text-sm font-semibold uppercase tracking-widest mb-3" style="color: var(--primary-muted)">Marengo, Illinois</p>
-      <h1 class="text-4xl md:text-6xl font-bold mb-4 leading-tight">Marengo Makers Market</h1>
-      <p class="text-lg md:text-xl mb-8 max-w-xl mx-auto" style="color: var(--primary-light)">
-        Crafters, farmers, and local vendors — monthly Friday evenings at Calvin Spencer Park.
+  <!-- Hero: poster -->
+  <section class="px-4 pt-14 pb-12 text-center">
+    <div class="max-w-3xl mx-auto">
+      <p class="eyebrow text-ink-soft text-sm rise">Calvin Spencer Park · Marengo, Illinois</p>
+      <h1 class="font-display uppercase mt-4 rise" style="animation-delay: 0.08s">
+        <span class="block text-barn leading-none text-[clamp(3rem,10vw,5.75rem)]">Marengo</span>
+        <span class="block text-ink leading-tight text-[clamp(1.6rem,5.5vw,3.1rem)]">Makers Market</span>
+      </h1>
+      <p class="mt-4 text-lg text-ink-soft rise" style="animation-delay: 0.16s">
+        handmade · homegrown · hometown
       </p>
-      <div class="flex flex-col sm:flex-row gap-3 justify-center">
-        <a href="/schedule"
-          class="font-semibold px-6 py-3 rounded-lg transition-colors"
-          style="background: var(--accent); color: var(--accent-text)"
-          onmouseover="this.style.background='var(--accent-hover)'"
-          onmouseout="this.style.background='var(--accent)'">
-          View Full Schedule
-        </a>
-        <a href="/vendors"
-          class="border border-white text-white font-semibold px-6 py-3 rounded-lg transition-colors hover:bg-white"
-          onmouseover="this.style.color='var(--primary)'"
-          onmouseout="this.style.color='white'">
-          See Vendors
-        </a>
+
+      {nextMarket ? (
+        <div class="mt-8 rise" style="animation-delay: 0.24s">
+          <div class="ticket inline-block px-8 py-4 text-left">
+            <p class="eyebrow text-[0.75rem] text-barn-deep">Next market</p>
+            <p class="font-cond font-semibold uppercase tracking-wide text-2xl md:text-3xl leading-tight">
+              {nextMarket.date} · 5–8 PM
+            </p>
+            {nextMarket.rainDate && (
+              <p class="text-sm text-ink/70 mt-0.5">Rain date: {nextMarket.rainDate}</p>
+            )}
+          </div>
+        </div>
+      ) : (
+        <p class="mt-8 text-lg text-ink-soft rise" style="animation-delay: 0.24s">
+          That's a wrap on the 2026 season. See you next May!
+        </p>
+      )}
+
+      <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center rise" style="animation-delay: 0.32s">
+        <a href="/vendors" class="btn-punch">See the vendors</a>
+        <a href="/schedule" class="btn-quiet">Full schedule</a>
       </div>
     </div>
   </section>
 
-  <!-- Next Market Banner -->
-  {nextMarket && (
-    <section class="py-5 px-4" style="background: var(--accent)">
-      <div class="max-w-3xl mx-auto text-center">
-        <p class="font-semibold text-lg" style="color: var(--accent-text)">
-          🗓 Next market: <strong>{nextMarket.date}</strong> &nbsp;·&nbsp; 5:00–8:00 PM
-          {nextMarket.rainDate && (
-            <span class="text-sm font-normal ml-2">(Rain date: {nextMarket.rainDate})</span>
-          )}
-        </p>
-      </div>
-    </section>
-  )}
-
   <!-- Featured: Florence Nursing Home Donation Drive -->
-  <section class="py-12 px-4" style="background: var(--muted-bg)">
-    <div class="max-w-3xl mx-auto bg-white rounded-2xl shadow-sm overflow-hidden" style="border: 1px solid var(--border-c)">
-      <div class="px-6 py-4 text-white" style="background: linear-gradient(135deg, var(--primary), var(--primary-hover))">
-        <p class="text-xs font-semibold uppercase tracking-widest mb-1" style="color: var(--primary-muted)">July 31 — Donation Drive</p>
-        <h2 class="text-2xl font-bold">💝 Florence Nursing Home — Bingo Prize Wish List</h2>
-        <p class="text-sm mt-1" style="color: var(--primary-light)">Help bring smiles to the residents!</p>
+  <section class="px-4 py-12 bg-paper-deep">
+    <div class="max-w-3xl mx-auto bg-paper-bright rounded-xl overflow-hidden border border-line">
+      <div class="px-6 py-4 bg-kraft border-b-4 border-gold">
+        <p class="eyebrow text-barn text-xs">July 31 donation drive · Florence Nursing Home</p>
+        <h2 class="font-display text-2xl text-ink mt-1">Bingo Prize Wish List</h2>
       </div>
       <div class="px-6 py-6 md:flex md:gap-6 md:items-start">
         <img src="/images/florence-wish-list.jpg" alt="Florence Nursing Home wish list flyer for bingo prizes, decorated with bingo cards and balls, listing the donation items below"
-          class="w-full md:w-2/5 rounded-xl mb-5 md:mb-0" loading="lazy" width="1080" height="1620" />
+          class="w-full md:w-2/5 rounded-lg border border-line mb-5 md:mb-0" loading="lazy" width="1080" height="1620" />
         <div class="md:flex-1">
-          <p class="text-gray-700 leading-relaxed mb-6">
-            Florence Nursing Home is collecting bingo prizes for its residents —
-            bring your donations to the <strong>July 31 market</strong> and we'll get
-            them to the home. Donations of the following items are greatly appreciated:
+          <p class="text-ink leading-relaxed mb-5">
+            Florence Nursing Home is collecting bingo prizes for its residents.
+            Bring your donations to the <strong>July 31 market</strong> and we'll get them
+            to the home. Donations of the following items are greatly appreciated:
           </p>
 
-          <ul class="grid grid-cols-2 gap-x-6 gap-y-1 text-sm text-gray-700 mb-6">
-            <li>Word Searches</li>
-            <li>Deodorant</li>
-            <li>Shampoo</li>
-            <li>Conditioner</li>
-            <li>Body Wash</li>
-            <li>Toothpaste &amp; Toothbrushes</li>
-            <li>Candy &amp; Snacks (incl. sugar-free)</li>
-            <li>Earrings</li>
-            <li>Rings</li>
-            <li>Ankle Socks for Men &amp; Women</li>
-            <li>Non-Slip Socks</li>
-            <li>Stamps</li>
-            <li>Hair Accessories</li>
-            <li>Perfume / Cologne</li>
-            <li>Holiday / Seasonal Décor</li>
-            <li>Crafts for Door Decorations</li>
+          <ul class="grid grid-cols-2 gap-x-6 gap-y-1.5 text-sm text-ink mb-5">
+            {[
+              'Word Searches', 'Deodorant', 'Shampoo', 'Conditioner', 'Body Wash',
+              'Toothpaste & Toothbrushes', 'Candy & Snacks (incl. sugar-free)', 'Earrings',
+              'Rings', 'Ankle Socks for Men & Women', 'Non-Slip Socks', 'Stamps',
+              'Hair Accessories', 'Perfume / Cologne', 'Holiday / Seasonal Décor',
+              'Crafts for Door Decorations',
+            ].map(item => (
+              <li class="flex gap-2 items-baseline">
+                <span class="w-1.5 h-1.5 bg-gold shrink-0 self-center" aria-hidden="true"></span>
+                {item}
+              </li>
+            ))}
           </ul>
 
-          <p class="text-sm text-gray-600">
-            Thank you for supporting the residents of Florence Nursing Home! 💜
+          <p class="text-sm text-ink-soft">
+            Thank you for supporting the residents of Florence Nursing Home!
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Detail Cards -->
-  <section class="max-w-5xl mx-auto px-4 py-16 grid md:grid-cols-3 gap-8">
-    <div class="bg-white rounded-2xl p-6 shadow-sm" style="border: 1px solid var(--border-c)">
-      <div class="text-3xl mb-3">📍</div>
-      <h2 class="font-bold text-lg mb-2" style="color: var(--primary)">Location</h2>
-      <p class="text-gray-700 text-sm leading-relaxed">
+  <!-- Detail cards -->
+  <section class="max-w-5xl mx-auto px-4 py-14 grid md:grid-cols-3 gap-6">
+    <div class="bg-paper-bright rounded-lg p-6 border border-line">
+      <svg class="w-8 h-8 mb-3" viewBox="0 0 24 24" fill="none" stroke="#7c2214" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 21s-6-5.2-6-10a6 6 0 1 1 12 0c0 4.8-6 10-6 10z" />
+        <circle cx="12" cy="11" r="2.2" />
+      </svg>
+      <h2 class="eyebrow text-barn text-sm mb-2">Location</h2>
+      <p class="text-ink text-sm leading-relaxed">
         <strong>Calvin Spencer Park</strong><br />
         351 Hale St., Marengo, IL<br />
-        <span class="text-gray-500">Across from the Catholic Church</span>
+        <span class="text-ink-soft">Across from the Catholic Church</span>
       </p>
       <a href="https://maps.google.com/?q=351+Hale+St+Marengo+IL" target="_blank" rel="noopener"
-        class="inline-block mt-3 text-sm font-medium hover:underline" style="color: var(--link)">
+        class="inline-block mt-3 text-sm font-bold text-barn hover:underline underline-offset-4">
         Get directions →
       </a>
     </div>
 
-    <div class="bg-white rounded-2xl p-6 shadow-sm" style="border: 1px solid var(--border-c)">
-      <div class="text-3xl mb-3">🕔</div>
-      <h2 class="font-bold text-lg mb-2" style="color: var(--primary)">Hours</h2>
-      <p class="text-gray-700 text-sm leading-relaxed">
+    <div class="bg-paper-bright rounded-lg p-6 border border-line">
+      <svg class="w-8 h-8 mb-3" viewBox="0 0 24 24" fill="none" stroke="#7c2214" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 7v5l3.2 2" />
+      </svg>
+      <h2 class="eyebrow text-barn text-sm mb-2">Hours</h2>
+      <p class="text-ink text-sm leading-relaxed">
         <strong>5:00 PM – 8:00 PM</strong><br />
         Monthly on Fridays<br />
-        <span class="text-gray-500">May through September 2026</span>
+        <span class="text-ink-soft">May through September 2026</span>
       </p>
     </div>
 
-    <div class="bg-white rounded-2xl p-6 shadow-sm" style="border: 1px solid var(--border-c)">
-      <div class="text-3xl mb-3">🛖</div>
-      <h2 class="font-bold text-lg mb-2" style="color: var(--primary)">Vendors</h2>
-      <p class="text-gray-700 text-sm leading-relaxed">
-        Wide variety of crafters, local vendors, and farmers. Interested in a booth?
+    <div class="bg-paper-bright rounded-lg p-6 border border-line">
+      <svg class="w-8 h-8 mb-3" viewBox="0 0 24 24" fill="none" stroke="#7c2214" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M3 10l9-6.5L21 10" />
+        <path d="M3 10c1.5 2.2 3 2.2 4.5 0c1.5 2.2 3 2.2 4.5 0c1.5 2.2 3 2.2 4.5 0c1.5 2.2 3 2.2 4.5 0" />
+        <path d="M5.5 12.5V20M18.5 12.5V20" />
+      </svg>
+      <h2 class="eyebrow text-barn text-sm mb-2">Vendors</h2>
+      <p class="text-ink text-sm leading-relaxed">
+        A wide variety of crafters, local vendors, and farmers. Interested in a booth?
       </p>
-      <a href="/contact" class="inline-block mt-3 text-sm font-medium hover:underline" style="color: var(--link)">
+      <a href="/contact" class="inline-block mt-3 text-sm font-bold text-barn hover:underline underline-offset-4">
         Request a booth →
       </a>
     </div>
   </section>
 
-  <!-- 2026 Schedule Preview -->
-  <section class="py-14 px-4" style="background: var(--muted-bg)">
+  <!-- 2026 schedule preview -->
+  <section class="py-14 px-4 bg-paper-deep">
     <div class="max-w-3xl mx-auto">
-      <h2 class="text-2xl font-bold text-center mb-8" style="color: var(--primary)">2026 Market Dates</h2>
+      <p class="eyebrow text-ink-soft text-sm text-center">2026 Season</p>
+      <h2 class="font-display text-3xl text-barn text-center mt-1 mb-8">Market Dates</h2>
       <div class="overflow-x-auto">
-        <table class="w-full text-sm bg-white rounded-xl shadow-sm" style="border: 1px solid var(--border-c)">
+        <table class="w-full text-sm bg-paper-bright rounded-lg overflow-hidden border border-line">
           <thead>
-            <tr class="text-white" style="background: var(--primary)">
-              <th class="px-5 py-3 text-left font-semibold rounded-tl-xl">Market Date</th>
-              <th class="px-5 py-3 text-left font-semibold rounded-tr-xl">Rain Date</th>
+            <tr class="bg-barn text-paper">
+              <th class="eyebrow px-5 py-3 text-left text-[0.85rem] font-semibold">Market Date</th>
+              <th class="eyebrow px-5 py-3 text-left text-[0.85rem] font-semibold">Rain Date</th>
             </tr>
           </thead>
           <tbody>
             {markets.map((m, i) => (
-              <tr style={i % 2 !== 0 ? 'background: var(--row-alt)' : ''}>
-                <td class="px-5 py-3 font-medium">{m.date}</td>
-                <td class="px-5 py-3 text-gray-500">{m.rainDate ?? '—'}</td>
+              <tr class:list={[m === nextMarket ? 'bg-gold/25' : i % 2 !== 0 ? 'bg-paper' : '']}>
+                <td class="px-5 py-3 font-bold">
+                  {m.date}
+                  {m === nextMarket && (
+                    <span class="eyebrow bg-gold text-ink text-[0.65rem] rounded px-1.5 py-0.5 ml-2 align-middle">Next</span>
+                  )}
+                </td>
+                <td class="px-5 py-3 text-ink-soft">{m.rainDate ?? '—'}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-      <p class="text-center mt-4 text-sm text-gray-500">All markets run 5:00–8:00 PM at Calvin Spencer Park</p>
+      <p class="text-center mt-4 text-sm text-ink-soft">All markets run 5:00–8:00 PM at Calvin Spencer Park</p>
     </div>
   </section>
 
   <!-- Facebook CTA -->
   <section class="max-w-3xl mx-auto px-4 py-14 text-center">
-    <h2 class="text-2xl font-bold mb-3" style="color: var(--primary)">Stay Connected</h2>
-    <p class="text-gray-600 mb-6">Follow us on Facebook for updates, vendor spotlights, and rain-day announcements.</p>
+    <h2 class="font-display text-2xl text-barn mb-3">Stay Connected</h2>
+    <p class="text-ink-soft mb-6">Follow us on Facebook for updates, vendor spotlights, and rain-day announcements.</p>
     <a href="https://www.facebook.com/groups/marengoilmarket" target="_blank" rel="noopener"
-      class="inline-flex items-center gap-2 bg-[#1877f2] text-white font-semibold px-6 py-3 rounded-lg hover:bg-[#1465d8] transition-colors">
-      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+      class="inline-flex items-center gap-2 bg-dusk text-paper font-bold px-6 py-3 rounded-lg hover:bg-dusk-deep transition-colors">
+      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
         <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.884v2.25h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/>
       </svg>
       Join us on Facebook

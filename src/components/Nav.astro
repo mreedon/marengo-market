@@ -1,4 +1,6 @@
 ---
+import Bunting from './Bunting.astro';
+
 const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/schedule', label: 'Schedule' },
@@ -10,13 +12,18 @@ const navLinks = [
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="text-white shadow-md" style="background: var(--primary)">
-  <nav class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
-    <a href="/" class="flex items-center gap-2 group">
-      <span class="text-2xl">🌿</span>
+<header class="bg-paper-bright">
+  <nav class="max-w-5xl mx-auto px-4 pt-4 pb-3 flex items-center justify-between gap-4">
+    <a href="/" class="flex items-center gap-2.5 group">
+      <svg class="w-6 h-6 shrink-0" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M6 2.5v19" stroke="#2c241f" stroke-width="2" stroke-linecap="round" />
+        <path d="M7.5 3.5h12l-4 4.5 4 4.5h-12z" fill="#7c2214" />
+      </svg>
       <div class="leading-tight">
-        <div class="font-bold text-lg tracking-tight text-white group-hover:text-[var(--primary-muted)] transition-colors">Marengo Makers Market</div>
-        <div class="text-xs" style="color: var(--primary-muted)">Marengo, IL</div>
+        <div class="font-display text-barn text-[1.05rem] leading-none group-hover:text-barn-deep transition-colors">
+          Marengo Makers Market
+        </div>
+        <div class="eyebrow text-ink-soft text-[0.7rem] mt-1">Marengo, Illinois</div>
       </div>
     </a>
 
@@ -25,12 +32,13 @@ const currentPath = Astro.url.pathname;
         <li>
           <a
             href={href}
-            class="text-sm font-medium transition-colors"
-            style={currentPath === href
-              ? 'color: var(--accent); text-decoration: underline; text-underline-offset: 4px;'
-              : 'color: white;'}
-            onmouseover="this.style.color='var(--accent)'"
-            onmouseout={`this.style.color='${currentPath === href ? 'var(--accent)' : 'white'}'`}
+            class:list={[
+              'eyebrow text-[0.95rem] pb-1 border-b-[3px] transition-colors',
+              currentPath === href
+                ? 'text-barn border-gold'
+                : 'text-ink border-transparent hover:text-barn',
+            ]}
+            aria-current={currentPath === href ? 'page' : undefined}
           >
             {label}
           </a>
@@ -38,26 +46,40 @@ const currentPath = Astro.url.pathname;
       ))}
     </ul>
 
-    <button id="mobile-menu-btn" class="md:hidden p-2 rounded transition-colors hover:opacity-80" aria-label="Toggle menu">
+    <button id="mobile-menu-btn" class="md:hidden p-2 text-ink rounded transition-opacity hover:opacity-70" aria-label="Toggle menu" aria-expanded="false">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
       </svg>
     </button>
   </nav>
 
-  <div id="mobile-menu" class="hidden md:hidden" style="border-top: 1px solid var(--primary-hover)">
-    <ul class="max-w-5xl mx-auto px-4 py-3 flex flex-col gap-3">
+  <div id="mobile-menu" class="hidden md:hidden border-t border-line bg-paper-bright">
+    <ul class="max-w-5xl mx-auto px-4 py-3 flex flex-col gap-1">
       {navLinks.map(({ href, label }) => (
         <li>
-          <a href={href} class="block text-sm font-medium hover:opacity-80 transition-opacity py-1">{label}</a>
+          <a
+            href={href}
+            class:list={[
+              'eyebrow block text-[0.95rem] py-2',
+              currentPath === href ? 'text-barn' : 'text-ink',
+            ]}
+            aria-current={currentPath === href ? 'page' : undefined}
+          >
+            {label}
+          </a>
         </li>
       ))}
     </ul>
   </div>
+
+  <Bunting />
 </header>
 
 <script>
   const btn = document.getElementById('mobile-menu-btn');
   const menu = document.getElementById('mobile-menu');
-  btn?.addEventListener('click', () => menu?.classList.toggle('hidden'));
+  btn?.addEventListener('click', () => {
+    const open = menu?.classList.toggle('hidden') === false;
+    btn.setAttribute('aria-expanded', String(open));
+  });
 </script>

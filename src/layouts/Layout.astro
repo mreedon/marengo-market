@@ -1,4 +1,8 @@
 ---
+import '@fontsource/alfa-slab-one';
+import '@fontsource/barlow-condensed/500.css';
+import '@fontsource/barlow-condensed/600.css';
+import '@fontsource-variable/karla';
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
@@ -8,7 +12,7 @@ interface Props {
   description?: string;
 }
 
-const { title, description = 'Crafters, vendors, and farmers — monthly Friday evenings at Calvin Spencer Park in Marengo, IL.' } = Astro.props;
+const { title, description = 'Crafters, vendors, and farmers. Monthly Friday evenings at Calvin Spencer Park in Marengo, IL.' } = Astro.props;
 ---
 
 <html lang="en">
@@ -16,10 +20,12 @@ const { title, description = 'Crafters, vendors, and farmers — monthly Friday 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <link rel="icon" href="/favicon.ico" />
+    <meta name="theme-color" content="#7c2214" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <title>{title} | Marengo Makers Market</title>
   </head>
-  <body class="bg-[var(--page-bg)] text-[#1a1a1a] font-sans min-h-screen flex flex-col">
+  <body class="bg-paper text-ink font-sans min-h-screen flex flex-col">
     <Nav />
     <main class="flex-1">
       <slot />

@@ -2,55 +2,57 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Contact" description="Contact the Marengo Makers Market — vendor booth inquiries, general questions, and social media.">
+<Layout title="Contact" description="Contact the Marengo Makers Market: vendor booth inquiries, general questions, and social media.">
   <section class="max-w-2xl mx-auto px-4 py-14">
-    <h1 class="text-3xl font-bold mb-3" style="color: var(--primary)">Contact Us</h1>
-    <p class="text-gray-600 mb-10">Questions or interested in a booth? Reach out — we'd love to have you.</p>
+    <p class="eyebrow text-ink-soft text-sm">Questions · Booth inquiries</p>
+    <h1 class="font-display text-4xl text-barn mt-1 mb-3">Contact Us</h1>
+    <p class="text-ink-soft mb-10">Questions or interested in a booth? Reach out. We'd love to have you.</p>
 
     <div class="space-y-6">
-      <div class="bg-white rounded-xl p-6 shadow-sm flex gap-4 items-start" style="border: 1px solid var(--border-c)">
-        <div class="text-3xl">✉️</div>
+      <div class="bg-paper-bright rounded-lg p-6 border border-line flex gap-4 items-start">
+        <svg class="w-7 h-7 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="#7c2214" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="5" width="18" height="14" rx="2" />
+          <path d="M3 7l9 6 9-6" />
+        </svg>
         <div>
-          <h2 class="font-bold mb-1" style="color: var(--primary)">Email</h2>
-          <p class="text-sm text-gray-600 mb-2">For booth inquiries or general questions:</p>
-          <a href="mailto:Marengoilmarket@gmail.com" class="font-medium hover:underline" style="color: var(--link)">
+          <h2 class="eyebrow text-barn text-sm mb-1.5">Email</h2>
+          <p class="text-sm text-ink-soft mb-2">For booth inquiries or general questions:</p>
+          <a href="mailto:Marengoilmarket@gmail.com" class="font-bold text-barn hover:underline underline-offset-4">
             Marengoilmarket@gmail.com
           </a>
         </div>
       </div>
 
-      <div class="bg-white rounded-xl p-6 shadow-sm flex gap-4 items-start" style="border: 1px solid var(--border-c)">
-        <div class="text-3xl">📘</div>
+      <div class="bg-paper-bright rounded-lg p-6 border border-line flex gap-4 items-start">
+        <svg class="w-7 h-7 shrink-0 mt-0.5" fill="#7c2214" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.884v2.25h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/>
+        </svg>
         <div>
-          <h2 class="font-bold mb-1" style="color: var(--primary)">Facebook Group</h2>
-          <p class="text-sm text-gray-600 mb-2">Follow for updates, vendor news, and rain-day announcements:</p>
+          <h2 class="eyebrow text-barn text-sm mb-1.5">Facebook group</h2>
+          <p class="text-sm text-ink-soft mb-2">Follow for updates, vendor news, and rain-day announcements:</p>
           <a href="https://www.facebook.com/groups/marengoilmarket" target="_blank" rel="noopener"
-            class="font-medium hover:underline" style="color: var(--link)">
+            class="font-bold text-barn hover:underline underline-offset-4">
             facebook.com/groups/marengoilmarket
           </a>
         </div>
       </div>
 
-      <div class="rounded-xl p-6" style="background: var(--muted-bg); border: 1px solid var(--border-c)">
-        <h2 class="font-bold mb-2" style="color: var(--primary)">Vendor Booths</h2>
-        <p class="text-sm text-gray-700 leading-relaxed">
+      <div class="bg-kraft border border-line rounded-lg p-6">
+        <h2 class="eyebrow text-barn text-sm mb-2">Vendor booths</h2>
+        <p class="text-sm text-ink leading-relaxed">
           We welcome a wide variety of crafters, farmers, and local vendors. If you're interested in reserving a booth for an upcoming market date, email us at
-          <a href="mailto:Marengoilmarket@gmail.com" class="font-medium hover:underline" style="color: var(--link)">Marengoilmarket@gmail.com</a>
+          <a href="mailto:Marengoilmarket@gmail.com" class="font-bold text-barn hover:underline underline-offset-4">Marengoilmarket@gmail.com</a>
           with your name, what you sell, and which date(s) you'd like to participate.
         </p>
-        <p class="text-sm text-gray-700 leading-relaxed mt-3">
+        <p class="text-sm text-ink leading-relaxed mt-3">
           To sign up, fill out the two forms below and return them to us:
         </p>
-        <div class="flex flex-wrap gap-3 mt-3">
-          <a href="/forms/vendor-application.pdf" target="_blank" rel="noopener"
-            class="inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium text-white hover:opacity-90"
-            style="background: var(--primary)">
-            📄 Vendor Application
+        <div class="flex flex-wrap gap-3 mt-4">
+          <a href="/forms/vendor-application.pdf" target="_blank" rel="noopener" class="btn-punch text-sm">
+            Vendor application (PDF)
           </a>
-          <a href="/forms/hold-harmless-agreement.pdf" target="_blank" rel="noopener"
-            class="inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium hover:underline"
-            style="color: var(--link); border: 1px solid var(--border-c); background: white">
-            📄 Hold Harmless Agreement
+          <a href="/forms/hold-harmless-agreement.pdf" target="_blank" rel="noopener" class="btn-quiet text-sm bg-paper-bright">
+            Hold harmless agreement (PDF)
           </a>
         </div>
       </div>

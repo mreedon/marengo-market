@@ -8,49 +8,61 @@ const markets = [
   { date: 'Friday, August 28',    rainDate: 'Friday, September 4' },
   { date: 'Friday, September 25', rainDate: 'Friday, October 2' },
 ];
+
+const today = new Date();
+const nextMarket = markets.find(m => {
+  const d = new Date(m.date.replace('Friday, ', '') + ', 2026');
+  return d >= today;
+});
 ---
 
-<Layout title="Schedule" description="2026 Marengo Makers Market schedule — monthly Fridays at Calvin Spencer Park, 5-8 PM.">
+<Layout title="Schedule" description="2026 Marengo Makers Market schedule: monthly Fridays at Calvin Spencer Park, 5-8 PM.">
   <section class="max-w-3xl mx-auto px-4 py-14">
-    <h1 class="text-3xl font-bold mb-2" style="color: var(--primary)">2026 Market Schedule</h1>
-    <p class="text-gray-600 mb-8">Monthly Friday evenings, 5:00–8:00 PM · Calvin Spencer Park, 351 Hale St., Marengo</p>
+    <p class="eyebrow text-ink-soft text-sm">2026 Season</p>
+    <h1 class="font-display text-4xl text-barn mt-1 mb-3">Market Schedule</h1>
+    <p class="text-ink-soft mb-8">Monthly Friday evenings, 5:00–8:00 PM · Calvin Spencer Park, 351 Hale St., Marengo</p>
 
     <div class="overflow-x-auto mb-8">
-      <table class="w-full text-sm bg-white rounded-xl shadow-sm" style="border: 1px solid var(--border-c)">
+      <table class="w-full text-sm bg-paper-bright rounded-lg overflow-hidden border border-line">
         <thead>
-          <tr class="text-white" style="background: var(--primary)">
-            <th class="px-5 py-3 text-left font-semibold rounded-tl-xl">Market Date</th>
-            <th class="px-5 py-3 text-left font-semibold">Time</th>
-            <th class="px-5 py-3 text-left font-semibold rounded-tr-xl">Rain Date</th>
+          <tr class="bg-barn text-paper">
+            <th class="eyebrow px-5 py-3 text-left text-[0.85rem] font-semibold">Market Date</th>
+            <th class="eyebrow px-5 py-3 text-left text-[0.85rem] font-semibold">Time</th>
+            <th class="eyebrow px-5 py-3 text-left text-[0.85rem] font-semibold">Rain Date</th>
           </tr>
         </thead>
         <tbody>
           {markets.map((m, i) => (
-            <tr style={i % 2 !== 0 ? 'background: var(--row-alt)' : ''}>
-              <td class="px-5 py-3 font-medium">{m.date}</td>
-              <td class="px-5 py-3 text-gray-600">5:00–8:00 PM</td>
-              <td class="px-5 py-3 text-gray-500">{m.rainDate ?? '—'}</td>
+            <tr class:list={[m === nextMarket ? 'bg-gold/25' : i % 2 !== 0 ? 'bg-paper' : '']}>
+              <td class="px-5 py-3 font-bold">
+                {m.date}
+                {m === nextMarket && (
+                  <span class="eyebrow bg-gold text-ink text-[0.65rem] rounded px-1.5 py-0.5 ml-2 align-middle">Next</span>
+                )}
+              </td>
+              <td class="px-5 py-3 text-ink-soft">5:00–8:00 PM</td>
+              <td class="px-5 py-3 text-ink-soft">{m.rainDate ?? '—'}</td>
             </tr>
           ))}
         </tbody>
       </table>
     </div>
 
-    <div class="rounded-xl p-5 text-sm text-gray-700" style="background: var(--accent-tint); border: 1px solid var(--accent-border)">
-      <p class="font-semibold text-[#1a1a1a] mb-1">Rain policy</p>
+    <div class="bg-kraft border border-line rounded-lg p-5 text-sm text-ink">
+      <p class="eyebrow text-barn text-xs mb-1.5">Rain policy</p>
       <p>In the event of rain, the market moves to its listed rain date. Follow us on
         <a href="https://www.facebook.com/groups/marengoilmarket" target="_blank" rel="noopener"
-          class="font-medium hover:underline" style="color: var(--link)">Facebook</a>
+          class="font-bold text-barn hover:underline underline-offset-4">Facebook</a>
         for same-day updates.
       </p>
     </div>
 
-    <div class="mt-10 bg-white rounded-xl p-6 shadow-sm" style="border: 1px solid var(--border-c)">
-      <h2 class="font-bold text-lg mb-2" style="color: var(--primary)">Getting Here</h2>
-      <p class="text-sm text-gray-700 mb-1"><strong>Calvin Spencer Park</strong></p>
-      <p class="text-sm text-gray-600 mb-4">351 Hale St., Marengo, IL &nbsp;·&nbsp; Across from the Catholic Church</p>
+    <div class="mt-10 bg-paper-bright rounded-lg p-6 border border-line">
+      <h2 class="eyebrow text-barn text-sm mb-3">Getting here</h2>
+      <p class="text-sm text-ink mb-1"><strong>Calvin Spencer Park</strong></p>
+      <p class="text-sm text-ink-soft mb-4">351 Hale St., Marengo, IL · Across from the Catholic Church</p>
       <a href="https://maps.google.com/?q=351+Hale+St+Marengo+IL" target="_blank" rel="noopener"
-        class="text-sm font-medium hover:underline" style="color: var(--link)">
+        class="text-sm font-bold text-barn hover:underline underline-offset-4">
         Open in Google Maps →
       </a>
     </div>
