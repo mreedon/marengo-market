@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-const vendors = [
+const vendors: { name: string; items: string; menu?: string }[] = [
   { name: 'Ashley Jordan', items: 'Homemade cards, bookmarks, and small paintings' },
   { name: 'Ava Celine & Co. Bakery', items: "Gourmet Reese's & Oreo cupcakes" },
   { name: 'Beads By Beans', items: 'Beaded jewelry including earrings, necklaces, bracelets, badge reels, keychains' },
@@ -33,12 +33,12 @@ const vendors = [
   { name: 'RP Fab LLC & Iridescent Essence', items: 'Soaps, bath bombs, body butter, facial serum, laser cut items, wood turned items, fabrication services' },
   { name: "Séance at Tiffany's", items: 'Tarot readings, candles, art, kits, bells' },
   { name: 'Scatterbrained Crafters', items: 'Suncatchers, coasters, magnets, paper crafts, crochet items (farmers market bags, cup holders)' },
-  { name: 'Soda Squeezed', items: 'Dirty soda, lemonade' },
+  { name: 'Soda Squeezed', items: 'Dirty soda, lemonade', menu: '/menus/soda-squeezed-menu.png' },
   { name: 'Spirit Bombs', items: 'Bath bombs, shower steamers, herbal tea blends, hair oil, sea moss, Korean skincare, herbal salts, salt scrubs' },
   { name: 'Starlight Hidden Candles', items: 'Candles' },
   { name: 'Sunbeams Uganda', items: 'Handmade baskets, aprons, handbags, totes' },
   { name: 'Sweet Jems', items: 'Sugar & chocolate chip cookies' },
-  { name: 'Taqueria Paloma', items: 'Mexican food truck' },
+  { name: 'Taqueria Paloma', items: 'Mexican food truck', menu: '/menus/taqueria-paloma-menu.jpg' },
   { name: 'The Fabled Lilac', items: 'Watercolor paintings & gifts: florals, naturescapes, and portraits' },
   { name: 'The Plant Hustle', items: 'Live plants, keychains, plant related items' },
   { name: 'The Whimsical Workshop', items: 'Beaded jewelry, keychains, felt plushies, upcycled home decor, 3D printed items, magnets' },
@@ -64,11 +64,35 @@ const vendors = [
       for the latest additions.
     </p>
 
+    {/* Food & drink menus */}
+    <div class="mb-10">
+      <h2 class="eyebrow text-barn text-sm">Come hungry</h2>
+      <p class="font-display text-2xl text-ink mt-1 mb-4">This market's menus</p>
+      <div class="grid sm:grid-cols-2 gap-6 max-w-2xl">
+        {vendors.filter(v => v.menu).map((v, i) => (
+          <a
+            href={v.menu}
+            target="_blank"
+            rel="noopener"
+            class={`block bg-white border-2 border-line rounded p-2 pb-3 shadow-sm transition-transform hover:rotate-0 motion-reduce:transform-none ${i % 2 ? 'rotate-1' : '-rotate-1'}`}
+          >
+            <img src={v.menu} alt={`${v.name} menu`} class="w-full h-auto rounded-sm" loading="lazy" />
+            <p class="eyebrow text-ink text-[0.7rem] text-center mt-2">{v.name} · tap for full size</p>
+          </a>
+        ))}
+      </div>
+    </div>
+
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
       {vendors.map(v => (
         <div class="tag p-4 pl-7">
           <p class="font-bold text-ink text-sm">{v.name}</p>
           {v.items && <p class="text-xs text-ink-soft mt-0.5 leading-relaxed">{v.items}</p>}
+          {v.menu && (
+            <a href={v.menu} target="_blank" rel="noopener" class="inline-block text-xs font-bold text-barn hover:underline underline-offset-4 mt-1.5">
+              View menu &rarr;
+            </a>
+          )}
         </div>
       ))}
     </div>
