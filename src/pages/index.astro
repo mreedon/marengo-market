@@ -4,12 +4,14 @@ import Layout from '../layouts/Layout.astro';
 const markets = [
   { date: 'Friday, May 29',      rainDate: 'June 5' },
   { date: 'Friday, June 26',     rainDate: null },
-  { date: 'Friday, July 31',     rainDate: 'August 7' },
+  // July 31 postponed for weather; the market moved to its rain date.
+  { date: 'Friday, August 7',    rainDate: null, movedFrom: 'July 31' },
   { date: 'Friday, August 28',   rainDate: 'September 4' },
   { date: 'Friday, September 25', rainDate: 'October 2' },
 ];
 
 const today = new Date();
+today.setHours(0, 0, 0, 0);
 const nextMarket = markets.find(m => {
   const d = new Date(m.date.replace('Friday, ', '') + ', 2026');
   return d >= today;
@@ -36,6 +38,9 @@ const nextMarket = markets.find(m => {
             <p class="font-cond font-semibold uppercase tracking-wide text-2xl md:text-3xl leading-tight">
               {nextMarket.date} · 5–8 PM
             </p>
+            {nextMarket.movedFrom && (
+              <p class="text-sm text-barn font-semibold mt-0.5">Rescheduled from {nextMarket.movedFrom}</p>
+            )}
             {nextMarket.rainDate && (
               <p class="text-sm text-ink/70 mt-0.5">Rain date: {nextMarket.rainDate}</p>
             )}
@@ -58,7 +63,7 @@ const nextMarket = markets.find(m => {
   <section class="px-4 py-12 bg-paper-deep">
     <div class="max-w-3xl mx-auto bg-paper-bright rounded-xl overflow-hidden border border-line">
       <div class="px-6 py-4 bg-kraft border-b-4 border-gold">
-        <p class="eyebrow text-barn text-xs">July 31 donation drive · Florence Nursing Home</p>
+        <p class="eyebrow text-barn text-xs">August 7 donation drive · Florence Nursing Home</p>
         <h2 class="font-display text-2xl text-ink mt-1">Bingo Prize Wish List</h2>
       </div>
       <div class="px-6 py-6 md:flex md:gap-6 md:items-start">
@@ -67,7 +72,7 @@ const nextMarket = markets.find(m => {
         <div class="md:flex-1">
           <p class="text-ink leading-relaxed mb-5">
             Florence Nursing Home is collecting bingo prizes for its residents.
-            Bring your donations to the <strong>July 31 market</strong> and we'll get them
+            Bring your donations to the <strong>August 7 market</strong> and we'll get them
             to the home. Donations of the following items are greatly appreciated:
           </p>
 
@@ -162,6 +167,9 @@ const nextMarket = markets.find(m => {
                   {m.date}
                   {m === nextMarket && (
                     <span class="eyebrow bg-gold text-ink text-[0.65rem] rounded px-1.5 py-0.5 ml-2 align-middle">Next</span>
+                  )}
+                  {m.movedFrom && (
+                    <span class="block font-normal text-xs text-barn mt-0.5">Rescheduled from {m.movedFrom} (weather)</span>
                   )}
                 </td>
                 <td class="px-5 py-3 text-ink-soft">{m.rainDate ?? '—'}</td>
