@@ -4,8 +4,7 @@ import Layout from '../layouts/Layout.astro';
 const markets = [
   { date: 'Friday, May 29',      rainDate: 'June 5' },
   { date: 'Friday, June 26',     rainDate: null },
-  // July 31 postponed for weather; the market moved to its rain date.
-  { date: 'Friday, August 7',    rainDate: null, movedFrom: 'July 31' },
+  { date: 'Friday, August 7',    rainDate: null },
   { date: 'Friday, August 28',   rainDate: 'September 4' },
   { date: 'Friday, September 25', rainDate: 'October 2' },
 ];
@@ -38,9 +37,6 @@ const nextMarket = markets.find(m => {
             <p class="font-cond font-semibold uppercase tracking-wide text-2xl md:text-3xl leading-tight">
               {nextMarket.date} · 5–8 PM
             </p>
-            {nextMarket.movedFrom && (
-              <p class="text-sm text-barn font-semibold mt-0.5">Rescheduled from {nextMarket.movedFrom}</p>
-            )}
             {nextMarket.rainDate && (
               <p class="text-sm text-ink/70 mt-0.5">Rain date: {nextMarket.rainDate}</p>
             )}
@@ -167,9 +163,6 @@ const nextMarket = markets.find(m => {
                   {m.date}
                   {m === nextMarket && (
                     <span class="eyebrow bg-gold text-ink text-[0.65rem] rounded px-1.5 py-0.5 ml-2 align-middle">Next</span>
-                  )}
-                  {m.movedFrom && (
-                    <span class="block font-normal text-xs text-barn mt-0.5">Rescheduled from {m.movedFrom} (weather)</span>
                   )}
                 </td>
                 <td class="px-5 py-3 text-ink-soft">{m.rainDate ?? '—'}</td>
