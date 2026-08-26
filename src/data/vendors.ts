@@ -44,7 +44,6 @@ export const vendors: Vendor[] = [
   { name: 'Little Farm On The Creek', booth: '28', items: 'Garden starters, whipped tallow balm, dish soap sets, honey' },
   { name: "Lucy's Crochet Cuties", booth: '3', items: 'Crochet plush toys' },
   { name: 'Marengo Union Library Dist.', booth: '39', items: 'Non-profit' },
-  { name: 'Mary Holeton', booth: '32', items: 'Wood signs, home decor, baby and toddler clothing, towels' },
   { name: 'Maureen Cortilet', booth: '35', items: 'Wall decor, suncatchers, towels, diamond art, cups & plants' },
   { name: 'Nails by Alleah', booth: '33', items: 'Custom nail sets (glue on)' },
   { name: 'Norwex', booth: '13', items: 'Norwex independent consultant' },
