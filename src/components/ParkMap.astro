@@ -1,0 +1,203 @@
+---
+/*
+  Calvin Spencer Park booth layout, redrawn from the organizer's park map PDF
+  (emailed with the booth-numbered roster a few days before each market).
+
+  Booth positions are kept in `slots` below and keyed to the roster by booth
+  token, so the map and /vendors read from the same data — a vendor swap only
+  needs an edit in src/data/vendors.ts. Slots with no matching vendor render as
+  empty spots, which is what the organizer's map shows for unsold booths.
+
+  Orientation matches the organizer's map: Hale Street north, Taylor Street
+  south, the main park path running between them, north to the RIGHT.
+*/
+import { vendors, vendorByBooth } from '../data/vendors';
+
+type Slot = { booth: string; x: number; y: number; w?: number; h?: number; rot?: number };
+
+const W = 36;
+const H = 31;
+
+const slots: Slot[] = [
+  /* West side, north of the plaza */
+  { booth: '32', x: 346, y: 104 },
+  { booth: '33', x: 346, y: 140 },
+  { booth: '34', x: 346, y: 210 },
+  { booth: '35', x: 346, y: 246 },
+  { booth: '36', x: 346, y: 282 },
+  { booth: '37', x: 346, y: 318 },
+  { booth: '38', x: 346, y: 388 },
+  /* West plaza curve and the row along the west curb */
+  { booth: '39', x: 306, y: 434, rot: -48 },
+  { booth: '40', x: 262, y: 460, rot: -24 },
+  { booth: '41', x: 214, y: 470 },
+  { booth: '42', x: 170, y: 470 },
+  { booth: '43', x: 92, y: 470 },
+
+  /* East side, north of the plaza */
+  { booth: '31', x: 418, y: 104 },
+  { booth: '30', x: 418, y: 140 },
+  { booth: '29', x: 418, y: 210 },
+  { booth: '28', x: 418, y: 282 },
+  { booth: '27', x: 418, y: 318 },
+  { booth: '26', x: 418, y: 354 },
+  /* East plaza curve and the row toward the restrooms */
+  { booth: '25', x: 424, y: 420, rot: 45 },
+  { booth: '24', x: 448, y: 448, rot: 28 },
+  { booth: '23', x: 470, y: 474, rot: 12 },
+  { booth: '22', x: 512, y: 470 },
+  { booth: '21', x: 556, y: 470 },
+  { booth: '20', x: 612, y: 470 },
+
+  /* West side, south of the plaza */
+  { booth: '44', x: 166, y: 612 },
+  { booth: '45', x: 210, y: 612 },
+  { booth: '47', x: 254, y: 612 },
+  { booth: '46', x: 298, y: 604, w: 30, h: 26, rot: -15 },
+  { booth: '2', x: 320, y: 630, w: 30, h: 26, rot: -35 },
+  { booth: '1', x: 334, y: 660, w: 30, h: 26, rot: -55 },
+  { booth: '3', x: 346, y: 752 },
+  { booth: '4', x: 346, y: 792 },
+  { booth: '5', x: 346, y: 832 },
+  { booth: '6', x: 346, y: 872 },
+
+  /* East side, south of the plaza */
+  { booth: '14', x: 456, y: 604, rot: 16 },
+  { booth: '13', x: 440, y: 632, rot: 32 },
+  { booth: '12', x: 424, y: 660, rot: 48 },
+  { booth: '15', x: 500, y: 612 },
+  { booth: '16', x: 542, y: 612 },
+  { booth: '17', x: 584, y: 612 },
+  { booth: '18', x: 626, y: 612 },
+  { booth: '19', x: 698, y: 612 },
+  { booth: '11', x: 418, y: 700 },
+  { booth: '10', x: 418, y: 746 },
+  { booth: '9', x: 418, y: 792 },
+  { booth: '8', x: 418, y: 838 },
+  { booth: '7', x: 418, y: 884 },
+];
+
+/* Park trees, kept from the organizer's map — they are the easiest landmarks to
+   navigate by once you are standing in the park. */
+const trees = [
+  [336, 186], [336, 358], [336, 908],
+  [466, 186], [466, 268], [466, 908],
+  [348, 540], [492, 540], [600, 540],
+];
+
+/* Legend order: booths 1-47, then the food truck pads, then the grass spot. */
+const rank = (b: string) => (b === 'FT1' ? 1001 : b === 'FT2' ? 1002 : b === 'GRASS' ? 1003 : Number(b));
+const legend = [...vendors].sort((a, b) => rank(a.booth) - rank(b.booth));
+
+const boothName = (b: string) => vendorByBooth.get(b)?.name;
+const legendToken = (b: string) => (b === 'GRASS' ? 'Grass' : b);
+---
+
+<div>
+  <div class="overflow-x-auto">
+    <svg
+      viewBox="0 0 820 1010"
+      class="w-full h-auto min-w-[600px] max-w-2xl mx-auto block"
+      role="img"
+      aria-labelledby="parkmap-title parkmap-desc"
+    >
+      <title id="parkmap-title">Calvin Spencer Park booth map</title>
+      <desc id="parkmap-desc">
+        Booths line both sides of the main park path between Hale Street to the north and
+        Taylor Street to the south. Live music sits at the center where the paths cross,
+        restrooms and the two food trucks are on the east side, and the grass spot is on the
+        west side south of the plaza. Every booth number is listed with its vendor below.
+      </desc>
+
+      <rect x="0" y="0" width="820" height="1010" fill="#f6f0e2" />
+
+      {/* Streets */}
+      <g stroke="#6b5c50" stroke-width="2" fill="none">
+        <line x1="40" y1="42" x2="800" y2="42" />
+        <line x1="40" y1="88" x2="800" y2="88" />
+        <line x1="40" y1="922" x2="800" y2="922" />
+        <line x1="40" y1="968" x2="800" y2="968" />
+      </g>
+      <g class="eyebrow" fill="#6b5c50" font-size="19" text-anchor="middle" style="letter-spacing:0.3em">
+        <text x="410" y="72">HALE STREET</text>
+        <text x="410" y="952">TAYLOR STREET</text>
+      </g>
+      <text x="410" y="994" text-anchor="middle" font-size="13" fill="#6b5c50">Catholic Church</text>
+
+      {/* Park paths */}
+      <g fill="#efe6d1">
+        <rect x="386" y="88" width="28" height="834" />
+        <rect x="120" y="561" width="680" height="28" />
+      </g>
+      <g stroke="#d9c9a8" stroke-width="1.5" stroke-dasharray="9 8" fill="none">
+        <line x1="400" y1="96" x2="400" y2="914" />
+        <line x1="128" y1="575" x2="792" y2="575" />
+      </g>
+
+      {/* North arrow — north is to the right, as on the organizer's map */}
+      <g stroke="#6b5c50" stroke-width="2.2" fill="none">
+        <line x1="712" y1="128" x2="762" y2="128" />
+        <path d="M752 119 L764 128 L752 137" />
+      </g>
+      <text x="700" y="134" text-anchor="end" font-size="17" font-weight="700" fill="#6b5c50">N</text>
+
+      {/* Fixed features */}
+      <g stroke="#2c241f" stroke-width="1.8" fill="#eee3c8">
+        <rect x="612" y="352" width="112" height="96" rx="12" />
+        <rect x="752" y="430" width="44" height="80" rx="4" />
+        <rect x="752" y="600" width="44" height="80" rx="4" />
+        <rect x="196" y="690" width="116" height="52" rx="4" />
+      </g>
+      <g class="eyebrow" fill="#2c241f" font-size="12" text-anchor="middle">
+        <text x="668" y="405">Restrooms</text>
+        <text x="254" y="721">Grass spot</text>
+      </g>
+      <g fill="#2c241f" font-size="14" font-weight="700" text-anchor="middle">
+        <text x="774" y="475">FT1</text>
+        <text x="774" y="645">FT2</text>
+      </g>
+
+      {/* Live music, at the crossing of the two paths */}
+      <circle cx="400" cy="575" r="34" fill="#e8ae35" stroke="#2c241f" stroke-width="1.8" />
+      <text x="400" y="580" text-anchor="middle" font-size="12" font-weight="700" fill="#2c241f" class="eyebrow">Music</text>
+
+      {/* Trees */}
+      {trees.map(([cx, cy]) => (
+        <circle cx={cx} cy={cy} r="7" fill="#b6c2a4" stroke="#6b5c50" stroke-width="1.2" />
+      ))}
+
+      {/* Booths */}
+      {slots.map(s => {
+        const w = s.w ?? W;
+        const h = s.h ?? H;
+        const cx = s.x + w / 2;
+        const cy = s.y + h / 2;
+        const name = boothName(s.booth);
+        return (
+          <g transform={s.rot ? `rotate(${s.rot} ${cx} ${cy})` : undefined}>
+            <title>{name ? `Booth ${s.booth} — ${name}` : `Booth ${s.booth} — open`}</title>
+            <rect x={s.x} y={s.y} width={w} height={h} rx="2"
+              fill={name ? '#fdfaf0' : '#efe6d1'} stroke="#2c241f" stroke-width="1.6" />
+            <text x={cx} y={cy + 5} text-anchor="middle" font-size="15" font-weight="700" fill="#2c241f">
+              {s.booth}
+            </text>
+          </g>
+        );
+      })}
+    </svg>
+  </div>
+
+  <p class="text-xs text-ink-soft text-center mt-3">
+    Redrawn from the organizer's park map. Live music by Two Girls One Guitar.
+    <span class="sm:hidden">Scroll the map sideways to see the whole park.</span>
+  </p>
+
+  <ol class="mt-6 columns-2 md:columns-3 gap-x-8 text-xs text-ink-soft">
+    {legend.map(v => (
+      <li class="flex gap-2 break-inside-avoid mb-1 leading-snug">
+        <span class="w-10 shrink-0 font-bold text-ink tabular-nums">{legendToken(v.booth)}</span>
+        <span>{v.name}</span>
+      </li>
+    ))}
+  </ol>
+</div>

@@ -1,58 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
-
-const vendors: { name: string; items: string; booth: string; menu?: string }[] = [
-  { name: 'Ava Celine & Co. Bakery', booth: 'Booth 43', items: "Gourmet Reese's & Oreo cupcakes" },
-  { name: 'Beads By Beans', booth: 'Booth 6', items: 'Beaded jewelry including earrings, necklaces, bracelets, badge reels, keychains' },
-  { name: 'Cabrera Sweets', booth: 'Booth 36', items: 'Bento cakes, chocolate covered strawberries, cakecicles, dulces enchilados' },
-  { name: "Carol's Crafts", booth: 'Booth 23', items: 'Embroidered towels, crocheted towels, cat toys, face cloth' },
-  { name: 'Circus Act', booth: 'Grass spot', items: 'Circus fitness' },
-  { name: 'Cub Scouts', booth: 'Booth 40', items: 'Non-profit' },
-  { name: 'DBM Designs By Denise', booth: 'Booth 7', items: 'T-shirts, sweatshirts, pants, crochet items, canvas bags, kids items, pictures' },
-  { name: 'Divine Designs', booth: 'Booth 24', items: 'Sewing & embroidery items' },
-  { name: "Doo-Broz Meats n' Treats", booth: 'Booth 14', items: 'Pet treats' },
-  { name: 'Dorothy Jewelry', booth: 'Booth 38', items: 'Jewelry' },
-  { name: 'Easy Peasy Lemon Squeezy', booth: 'Booth 44', items: 'Fresh squeezed lemonade, more than 8 flavor options with added boba' },
-  { name: 'Enchanted Crafts', booth: 'Booth 47', items: 'Jewelry, sublimation fabric items, crochet, crystals' },
-  { name: 'ERG Elite Remodeling', booth: 'Booth 46', items: 'Home improvement' },
-  { name: 'Fearless Garden', booth: 'Booth 4', items: 'Birdbaths, plant stands, garden accessories' },
-  { name: 'Healthy Hemp', booth: 'Booth 25', items: 'CBD products' },
-  { name: 'JD&J Crafts', booth: 'Booth 10', items: 'Diamond art, wreaths, wooden decor' },
-  { name: 'Joy In Motion Dance Studio', booth: 'Booth 1', items: '' },
-  { name: 'Little Farm On The Creek', booth: 'Booth 28', items: 'Garden starters, whipped tallow balm, dish soap sets, honey' },
-  { name: "Lucy's Crochet Cuties", booth: 'Booth 3', items: 'Crochet plush toys' },
-  { name: 'Marengo Union Library Dist.', booth: 'Booth 39', items: 'Non-profit' },
-  { name: 'Mary Holeton', booth: 'Booth 32', items: 'Wood signs, home decor, baby and toddler clothing, towels' },
-  { name: 'Maureen Cortilet', booth: 'Booth 35', items: 'Wall decor, suncatchers, towels, diamond art, cups & plants' },
-  { name: 'Nails by Alleah', booth: 'Booth 33', items: 'Custom nail sets (glue on)' },
-  { name: 'Norwex', booth: 'Booth 13', items: 'Norwex independent consultant' },
-  { name: 'Nutrilite, XS & Artistry', booth: 'Booth 31', items: 'Organic vitamin drinks, vitamin B12 based energy drinks, premium skincare' },
-  { name: 'RC Short Kits & Prints', booth: 'Booth 18', items: '3D printed & resin art, jewelry, games, bookmarks, coasters, key chains, laser etched glass, metal & acrylic signs, laser engraved leather tags & chains' },
-  { name: 'Redefined Designs', booth: 'Booth 12', items: 'Upcycled clothing & accessories' },
-  { name: 'Rhoads Creations', booth: 'Booth 15', items: 'Diamond dots, wood crafts, wristlets, pens, cups' },
-  { name: 'Roisin Gardens', booth: 'Booth 20', items: 'Fresh cut flowers' },
-  { name: 'RP Fab LLC & Iridescent Essence', booth: 'Booth 5', items: 'Soaps, bath bombs, body butter, facial serum, laser cut items, wood turned items, fabrication services' },
-  { name: 'Scatterbrained Crafters', booth: 'Booth 42', items: 'Suncatchers, coasters, magnets, paper crafts, crochet items (farmers market bags, cup holders)' },
-  { name: "Séance at Tiffany's", booth: 'Booth 29', items: 'Tarot readings, candles, art, kits, bells' },
-  { name: 'Selah & Ash', booth: 'Booth 34', items: "Original herbal teas, ginger flakes, children's books authored by Selah & Ash, memory butterflies" },
-  { name: 'Simply Mae Designs', booth: 'Booth 41', items: 'Keychains, sublimation, shirts, cups, home decor, stickers' },
-  { name: 'Small Town Heart', booth: 'Booth 19', items: 'Wood signs, koozies, car decals' },
-  { name: 'Soda Squeezed', booth: 'Food truck', items: 'Dirty soda, lemonade', menu: '/menus/soda-squeezed-menu.png' },
-  { name: 'Spirit Bombs', booth: 'Booth 45', items: 'Bath bombs, shower steamers, herbal tea blends, hair oil, sea moss, Korean skincare, herbal salts, salt scrubs' },
-  { name: 'Starlight Hidden Candles', booth: 'Booth 9', items: 'Candles' },
-  { name: 'Sunbeams Uganda', booth: 'Booth 17', items: 'Handmade baskets, aprons, handbags, totes' },
-  { name: 'Sung & Shine', booth: 'Booth 26', items: 'Earrings, bracelets, keychains (charms & beads)' },
-  { name: 'Sweet Jems', booth: 'Booth 22', items: 'Sugar & chocolate chip cookies' },
-  { name: 'Taqueria Paloma', booth: 'Food truck', items: 'Mexican food truck', menu: '/menus/taqueria-paloma-menu.jpg' },
-  { name: 'Tolentino Creations and Desserts', booth: 'Booth 30', items: 'Ribbon flower bouquets, pipe cleaner flower bouquets, keychains, can coozies, car coasters, lip balm holders & more' },
-  { name: 'Travis Coudal for Ward 4 & Marengo Weekly', booth: 'Booth 2', items: 'Ward 4 campaign booth and local news' },
-  { name: 'Two Heifers', booth: 'Booth 11', items: 'Breads, cookies, treats' },
-  { name: 'Unhallowed, LLC', booth: 'Booth 16', items: 'Hot sauces and rubs' },
-  { name: "Vee's Crafts & More", booth: 'Booth 8', items: 'Scrunchies, bracelets, stickers, diamond art figures' },
-  { name: 'Windy Ridge Acres', booth: 'Booth 37', items: 'Jams, extracts, produce, fabric crafts' },
-  { name: 'Yobi Made Prints', booth: 'Booth 27', items: '3D printed toys & collectibles' },
-  { name: 'Young Ole Soul', booth: 'Booth 21', items: 'Canned goods' },
-];
+import ParkMap from '../components/ParkMap.astro';
+import { vendors, boothLabel } from '../data/vendors';
 ---
 
 <Layout title="Vendors" description="Meet the vendors at the Marengo Makers Market: crafters, farmers, and local makers.">
@@ -66,6 +15,13 @@ const vendors: { name: string; items: string; booth: string; menu?: string }[] =
         class="font-bold text-barn hover:underline underline-offset-4">Facebook</a>
       for any day-of updates.
     </p>
+
+    {/* Booth map */}
+    <div class="mb-12">
+      <h2 class="eyebrow text-barn text-sm">Find your booth</h2>
+      <p class="font-display text-2xl text-ink mt-1 mb-4">Park map</p>
+      <ParkMap />
+    </div>
 
     {/* Food & drink menus */}
     <div class="mb-10">
@@ -91,7 +47,7 @@ const vendors: { name: string; items: string; booth: string; menu?: string }[] =
         <div class="tag p-4 pl-7">
           <div class="flex items-start justify-between gap-2">
             <p class="font-bold text-ink text-sm">{v.name}</p>
-            <span class="eyebrow shrink-0 bg-paper border border-line rounded-sm px-1.5 py-0.5 text-[0.65rem] text-ink-soft whitespace-nowrap">{v.booth}</span>
+            <span class="eyebrow shrink-0 bg-paper border border-line rounded-sm px-1.5 py-0.5 text-[0.65rem] text-ink-soft whitespace-nowrap">{boothLabel(v.booth)}</span>
           </div>
           {v.items && <p class="text-xs text-ink-soft mt-0.5 leading-relaxed">{v.items}</p>}
           {v.menu && (
