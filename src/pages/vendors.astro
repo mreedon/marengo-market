@@ -2,38 +2,60 @@
 import Layout from '../layouts/Layout.astro';
 
 const vendors: { name: string; items: string; menu?: string }[] = [
+  { name: 'Ashley Jordan', items: 'Homemade cards, bookmarks, and small paintings' },
   { name: 'Ava Celine & Co. Bakery', items: "Gourmet Reese's & Oreo cupcakes" },
   { name: 'Beads By Beans', items: 'Beaded jewelry including earrings, necklaces, bracelets, badge reels, keychains' },
-  { name: 'Big Baluka Snacks', items: 'Freeze dried candy & fruit' },
+  { name: 'Cabrera Sweets', items: 'Bento cakes, chocolate covered strawberries, cakecicles, dulces enchilados' },
   { name: "Carol's Crafts", items: 'Embroidered towels, crocheted towels, cat toys, face cloth' },
+  { name: 'Circus Act', items: 'Circus fitness' },
   { name: 'Cub Scouts', items: 'Non-profit' },
   { name: 'DBM Designs By Denise', items: 'T-shirts, sweatshirts, pants, crochet items, canvas bags, kids items, pictures' },
   { name: 'Divine Designs', items: 'Sewing & embroidery items' },
+  { name: "Doo-Broz Meats n' Treats", items: 'Pet treats' },
   { name: 'Dorothy Jewelry', items: 'Jewelry' },
+  { name: 'Easy Peasy Lemon Squeezy', items: 'Fresh squeezed lemonade, more than 8 flavor options with added boba' },
+  { name: 'Enchanted Crafts', items: 'Jewelry, sublimation fabric items, crochet, crystals' },
+  { name: 'ERG Elite Remodeling', items: 'Home improvement' },
+  { name: 'Fearless Garden', items: 'Birdbaths, plant stands, garden accessories' },
+  { name: 'Healthy Hemp', items: 'CBD products' },
   { name: 'JD&J Crafts', items: 'Diamond art, wreaths, wooden decor' },
   { name: 'Jewels Crafts', items: 'Silicone beaded accessory bar: 20+ items to choose from & 1000s of beads to design with' },
+  { name: 'Joy In Motion Dance Studio', items: '' },
   { name: 'KRD Farms', items: 'Certified organic farm fresh produce' },
   { name: "Linda's Creations", items: 'Christmas ornaments, wreaths, sports ornaments' },
   { name: 'Little Farm On The Creek', items: 'Garden starters, whipped tallow balm, dish soap sets, honey' },
+  { name: "Lucy's Crochet Cuties", items: 'Crochet plush toys' },
   { name: 'Marengo Union Library Dist.', items: 'Non-profit' },
+  { name: 'Mary Holeton', items: 'Wood signs, home decor, baby and toddler clothing, towels' },
   { name: 'Maureen Cortilet', items: 'Wall decor, suncatchers, towels, diamond art, cups & plants' },
   { name: 'Nails by Alleah', items: 'Custom nail sets (glue on)' },
+  { name: 'Norwex', items: 'Norwex independent consultant' },
   { name: 'Nutrilite, XS & Artistry', items: 'Organic vitamin drinks, vitamin B12 based energy drinks, premium skincare' },
   { name: 'RC Short Kits & Prints', items: '3D printed & resin art, jewelry, games, bookmarks, coasters, key chains, laser etched glass, metal & acrylic signs, laser engraved leather tags & chains' },
   { name: 'Redefined Designs', items: 'Upcycled clothing & accessories' },
+  { name: 'Rhoads Creations', items: 'Diamond dots, wood crafts, wristlets, pens, cups' },
+  { name: 'Roisin Gardens', items: 'Fresh cut flowers' },
   { name: 'RP Fab LLC & Iridescent Essence', items: 'Soaps, bath bombs, body butter, facial serum, laser cut items, wood turned items, fabrication services' },
-  { name: "Séance at Tiffany's", items: 'Tarot readings, candles, art, kits, bells' },
   { name: 'Scatterbrained Crafters', items: 'Suncatchers, coasters, magnets, paper crafts, crochet items (farmers market bags, cup holders)' },
+  { name: "Séance at Tiffany's", items: 'Tarot readings, candles, art, kits, bells' },
+  { name: 'Selah & Ash', items: 'Original herbal teas, ginger flakes, floral bouquets, memory butterflies' },
+  { name: 'Simply Mae Designs', items: 'Keychains, sublimation, shirts, cups, home decor, stickers' },
+  { name: 'Small Town Heart', items: 'Wood signs, koozies, car decals' },
+  { name: 'Soda Squeezed', items: 'Dirty soda, lemonade', menu: '/menus/soda-squeezed-menu.png' },
   { name: 'Spirit Bombs', items: 'Bath bombs, shower steamers, herbal tea blends, hair oil, sea moss, Korean skincare, herbal salts, salt scrubs' },
   { name: 'Starlight Hidden Candles', items: 'Candles' },
+  { name: 'Sunbeams Uganda', items: 'Handmade baskets, aprons, handbags, totes' },
+  { name: 'Sung & Shine', items: 'Earrings, bracelets, keychains (charms & beads)' },
+  { name: 'Sweet Jems', items: 'Sugar & chocolate chip cookies' },
   { name: 'Taqueria Paloma', items: 'Mexican food truck', menu: '/menus/taqueria-paloma-menu.jpg' },
-  { name: 'The Starter House', items: 'Sourdough bread & sourdough cookies' },
+  { name: 'The Plant Hustle', items: 'Live plants, keychains, plant related items' },
   { name: 'The Whimsical Workshop', items: 'Beaded jewelry, keychains, felt plushies, upcycled home decor, 3D printed items, magnets' },
   { name: 'Tolentino Creations and Desserts', items: 'Ribbon flower bouquets, pipe cleaner flower bouquets, keychains, can coozies, car coasters, lip balm holders & more' },
   { name: 'Travis Coudal for Ward 4', items: 'Non-profit' },
   { name: 'Two Heifers', items: 'Breads, cookies, treats' },
   { name: 'Unhallowed, LLC', items: 'Hot sauces and rubs' },
   { name: "Vee's Crafts & More", items: 'Scrunchies, bracelets, stickers, diamond art figures' },
+  { name: 'Windy Ridge Acres', items: 'Jams, extracts, produce, fabric crafts' },
   { name: 'Yobi Made Prints', items: '3D printed toys & collectibles' },
   { name: 'Young Ole Soul', items: 'Canned goods' },
 ];
@@ -41,7 +63,7 @@ const vendors: { name: string; items: string; menu?: string }[] = [
 
 <Layout title="Vendors" description="Meet the vendors at the Marengo Makers Market: crafters, farmers, and local makers.">
   <section class="max-w-5xl mx-auto px-4 py-14">
-    <p class="eyebrow text-ink-soft text-sm">Friday, August 7, 2026 · 5–8 PM · Calvin Spencer Park</p>
+    <p class="eyebrow text-ink-soft text-sm">Friday, August 28, 2026 · 5–8 PM · Calvin Spencer Park</p>
     <h1 class="font-display text-4xl text-barn mt-1 mb-3">Vendors</h1>
     <p class="text-sm text-ink-soft mb-8 max-w-xl">
       <span class="eyebrow bg-kraft border border-line rounded px-2 py-0.5 text-[0.75rem] text-ink mr-2">{vendors.length} booths this market</span>
