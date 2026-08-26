@@ -52,8 +52,6 @@ const slots: Slot[] = [
   /* West side, south of the plaza */
   { booth: '44', x: 166, y: 612 },
   { booth: '45', x: 210, y: 612 },
-  { booth: '47', x: 254, y: 612 },
-  { booth: '46', x: 298, y: 604, w: 30, h: 26, rot: -15 },
   { booth: '2', x: 320, y: 630, w: 30, h: 26, rot: -35 },
   { booth: '1', x: 334, y: 660, w: 30, h: 26, rot: -55 },
   { booth: '3', x: 346, y: 752 },
@@ -85,7 +83,7 @@ const trees = [
   [348, 540], [492, 540], [600, 540],
 ];
 
-/* Legend order: booths 1-47, then the food truck pads, then the grass spot. */
+/* Legend order: booths 1-45, then the food truck pads, then the grass spot. */
 const rank = (b: string) => (b === 'FT1' ? 1001 : b === 'FT2' ? 1002 : b === 'GRASS' ? 1003 : Number(b));
 const legend = [...vendors].sort((a, b) => rank(a.booth) - rank(b.booth));
 
