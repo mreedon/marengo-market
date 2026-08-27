@@ -1,12 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
+/* Keep `music` in step with the same field on the homepage when a lineup lands. */
 const markets = [
-  { date: 'Friday, May 29',       rainDate: 'Friday, June 5' },
-  { date: 'Friday, June 26',      rainDate: null },
-  { date: 'Friday, August 7',     rainDate: null },
-  { date: 'Friday, August 28',    rainDate: 'Friday, September 4' },
-  { date: 'Friday, September 25', rainDate: 'Friday, October 2' },
+  { date: 'Friday, May 29',       rainDate: 'Friday, June 5',       music: null },
+  { date: 'Friday, June 26',      rainDate: null,                   music: null },
+  { date: 'Friday, August 7',     rainDate: null,                   music: null },
+  { date: 'Friday, August 28',    rainDate: 'Friday, September 4',  music: 'Two Girls One Guitar, 6:30–8 PM' },
+  { date: 'Friday, September 25', rainDate: 'Friday, October 2',    music: null },
 ];
 
 const today = new Date();
@@ -39,6 +40,9 @@ const nextMarket = markets.find(m => {
                 {m.date}
                 {m === nextMarket && (
                   <span class="eyebrow bg-gold text-ink text-[0.65rem] rounded px-1.5 py-0.5 ml-2 align-middle">Next</span>
+                )}
+                {m.music && (
+                  <span class="block font-normal text-ink-soft text-xs mt-0.5">Live music: {m.music}</span>
                 )}
               </td>
               <td class="px-5 py-3 text-ink-soft">5:00–8:00 PM</td>
