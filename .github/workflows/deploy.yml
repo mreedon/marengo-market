@@ -1,7 +1,11 @@
 name: Deploy to Cloudflare Pages
 
+# Pull requests build but do not deploy, so a broken build is caught on the
+# PR instead of on production. Merging to main is what actually deploys.
 on:
   push:
+    branches: [main]
+  pull_request:
     branches: [main]
 
 jobs:
@@ -19,7 +23,11 @@ jobs:
 
       - run: npm run build
 
+      # Deploy only on push to main. PRs stop after the build above.
+      # Dependabot PRs cannot read repo secrets, so gating here also keeps
+      # them from failing on a missing CLOUDFLARE_API_TOKEN.
       - name: Deploy to Cloudflare Pages
+        if: github.event_name == 'push'
         run: npx wrangler pages deploy dist/client --project-name marengo-market --branch main --commit-dirty=true
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
