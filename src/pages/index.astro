@@ -1,22 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { markets, getNextMarket } from '../data/markets';
 
-/* `music` is per-market on purpose: only the next market renders, so a lineup
-   note retires itself when the date rolls over instead of going stale. */
-const markets = [
-  { date: 'Friday, May 29',      rainDate: 'June 5',      music: null },
-  { date: 'Friday, June 26',     rainDate: null,          music: null },
-  { date: 'Friday, August 7',    rainDate: null,          music: null },
-  { date: 'Friday, August 28',   rainDate: 'September 4', music: { act: 'Two Girls One Guitar', time: '6:30–8 PM' } },
-  { date: 'Friday, September 25', rainDate: 'October 2',  music: null },
-];
-
-const today = new Date();
-today.setHours(0, 0, 0, 0);
-const nextMarket = markets.find(m => {
-  const d = new Date(m.date.replace('Friday, ', '') + ', 2026');
-  return d >= today;
-});
+const nextMarket = getNextMarket();
 ---
 
 <Layout title="Home">

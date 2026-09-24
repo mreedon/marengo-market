@@ -12,6 +12,12 @@
   south, the main park path running between them, north to the RIGHT.
 */
 import { vendors, vendorByBooth } from '../data/vendors';
+import { getNextMarket } from '../data/markets';
+
+/* The live music line reads from the season data rather than being written in
+   here. The homepage and schedule versions self-retire because only the next
+   market renders; a hardcoded caption does not, so this one used to go stale. */
+const music = getNextMarket()?.music;
 
 type Slot = { booth: string; x: number; y: number; w?: number; h?: number; rot?: number };
 
@@ -186,7 +192,8 @@ const legendToken = (b: string) => (b === 'GRASS' ? 'Grass' : b);
   </div>
 
   <p class="text-xs text-ink-soft text-center mt-3">
-    Redrawn from the organizer's park map. Live music by Two Girls One Guitar, 6:30–8 PM.
+    Redrawn from the organizer's park map.
+    {music && <> Live music by {music.act}, {music.time}.</>}
     <span class="sm:hidden">Scroll the map sideways to see the whole park.</span>
   </p>
 
