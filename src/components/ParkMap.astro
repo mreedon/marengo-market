@@ -39,6 +39,14 @@ const slots: Slot[] = [
   { booth: '41', x: 214, y: 470 },
   { booth: '42', x: 170, y: 470 },
   { booth: '43', x: 92, y: 470 },
+  /* Second west row behind 32-36, added Sept 25 2026. These booths face the
+     path with the 32-38 row in front of them. */
+  { booth: '46', x: 268, y: 104 },
+  { booth: '47', x: 268, y: 140 },
+  { booth: '48', x: 268, y: 176 },
+  { booth: '49', x: 268, y: 212 },
+  { booth: '50', x: 268, y: 248 },
+  { booth: '51', x: 268, y: 284 },
 
   /* East side, north of the plaza */
   { booth: '31', x: 418, y: 104 },
@@ -84,12 +92,12 @@ const slots: Slot[] = [
 /* Park trees, kept from the organizer's map — they are the easiest landmarks to
    navigate by once you are standing in the park. */
 const trees = [
-  [336, 186], [336, 358], [336, 908],
+  [336, 186], [336, 358], [336, 908], [236, 192],
   [466, 186], [466, 268], [466, 908],
   [348, 540], [492, 540], [600, 540],
 ];
 
-/* Legend order: booths 1-45, then the food truck pads, then the grass spot. */
+/* Legend order: numbered booths, then the food truck pads, then the grass spot. */
 const rank = (b: string) => (b === 'FT1' ? 1001 : b === 'FT2' ? 1002 : b === 'GRASS' ? 1003 : Number(b));
 const legend = [...vendors].sort((a, b) => rank(a.booth) - rank(b.booth));
 

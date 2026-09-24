@@ -21,7 +21,7 @@ export const markets: Market[] = [
   { date: 'Friday, June 26',      rainDate: null,          music: null },
   { date: 'Friday, August 7',     rainDate: null,          music: null },
   { date: 'Friday, August 28',    rainDate: 'September 4', music: { act: 'Two Girls One Guitar', time: '6:30–8 PM' } },
-  { date: 'Friday, September 25', rainDate: 'October 2',   music: null },
+  { date: 'Friday, September 25', rainDate: 'October 2',   music: { act: 'Two Girls One Guitar', time: '6:30–8 PM' } },
 ];
 
 /* A market stays flagged "Next" through its own evening, so compare against the
